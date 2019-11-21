@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index</title>
+    <script>
+        function $(id) {
+            return document.getElementById(id)
+        }
+        var onStateChange = function() {
+            $('state-container').innerHTML = window.history.state;
+        }
+        function onPush(state) {
+            window.history.pushState(state, '', '/' + state);
+            onStateChange(state);
+        }
+        function onReplace(state) {
+            window.history.replaceState(state, '', '/' + state);
+            onStateChange(state);
+        }
+        window.onpopstate = onStateChange;
+    </script>
+    <style>
+        .example {
+            margin: 15px 0;
+        }
+
+        .anchor-paragraph {
+            margin-top: 1500px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Index</h1>
+    <ul>
+        <li><a href="/">Index</a></li>
+        <li><a href="page1.html">Page 1</a></li>
+        <li><a href="page2.html">Page 2</a></li>
+    </ul>
+
+    <h2>Basic navigation API</h2>
+    <div class="example">
+        <button onclick="window.history.back()">window.history.back()</button><br/>
+        <button onclick="window.history.forward()">window.history.forward()</button><br/>
+        <button onclick="window.history.go()">window.history.go()</button>
+    </div>
+    <div class="example">
+        window.history.<button onclick="window.history.go(parseInt($('go-input').value, 10))">go</button>(<input
+            size="3" id="go-input" value=1 />);
+    </div>
+
+    <h2>PushState/ReplaceState</h2>
+    <div class="example">
+        <button onclick="onPush('foo')">window.history.pushState('foo')</button><br/>
+        <button onclick="onPush('bar')">window.history.pushState('bar')</button><br/>
+        <button onclick="onPush('baz')">window.history.pushState('baz')</button><br/>
+        <button onclick="onReplace('foo')">window.history.replaceState('foo')</button><br/>
+        <button onclick="onReplace('bar')">window.history.replaceState('bar')</button><br/>
+        <button onclick="onReplace('baz')">window.history.replaceState('baz')</button>
+    </div>
+    <div class="example">
+        State: <span id="state-container"></span>
+    </div>
+
+    <h2>Anchor navigations</h2>
+    <ul>
+        <li><a href="#paragraph1">Paragraph 1</a></li>
+        <li><a href="#paragraph2">Paragraph 2</a></li>
+    </ul>
+
+    <p id="paragraph1" class="anchor-paragraph">
+        Paragraph 1.
+    </p>
+    <p id="paragraph2" class="anchor-paragraph">
+        Paragraph 2.
+    </p>
+
+</body>
+
+</html>

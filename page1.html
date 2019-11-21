@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Page 1</title>
+    <script>
+        function $(id) {
+            return document.getElementById(id)
+        }
+    </script>
+    <style>
+        .example {
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Page 1</h1>
+    <ul>
+        <li><a href="/">Index</a></li>
+        <li><a href="page1.html">Page 1</a></li>
+        <li><a href="page2.html">Page 2</a></li>
+    </ul>
+    <div class="example">
+        <button onclick="window.history.back()">window.history.back()</button>
+        <button onclick="window.history.forward()">window.history.forward()</button>
+    </div>
+    <div class="example">
+        window.history.<button onclick="window.history.go(parseInt($('go-input').value, 10))">go</button>(<input
+            size="3" id="go-input" value=1 />);
+    </div>
+
+</body>
+
+</html>
