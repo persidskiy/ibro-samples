@@ -10,7 +10,7 @@
         function $(id) {
             return document.getElementById(id)
         }
-        var onStateChange = function() {
+        var onStateChange = function () {
             $('state-container').innerHTML = window.history.state;
         }
         function onPush(state) {
@@ -36,16 +36,24 @@
 
 <body>
     <h1>Index</h1>
-    <ul>
+    <!-- <ul>
         <li><a href="/">Index</a></li>
         <li><a href="page1.html">Page 1</a></li>
         <li><a href="page2.html">Page 2</a></li>
+    </ul> -->
+
+    <h2>Redirects</h2>
+    <ul>
+        <li><a href="/simple">Simple HTTP Redirect</a></li>
+        <li><a href="/two-http">Two HTTP Redirects</a></li>
+        <li><a href="/client-js">Client Side JS Redirect</a></li>
+        <li><a href="/client-meta">Client Side Meta tag Redirect</a></li>
     </ul>
 
     <h2>Basic navigation API</h2>
     <div class="example">
-        <button onclick="window.history.back()">window.history.back()</button><br/>
-        <button onclick="window.history.forward()">window.history.forward()</button><br/>
+        <button onclick="window.history.back()">window.history.back()</button><br />
+        <button onclick="window.history.forward()">window.history.forward()</button><br />
         <button onclick="window.history.go()">window.history.go()</button>
     </div>
     <div class="example">
@@ -55,11 +63,11 @@
 
     <h2>PushState/ReplaceState</h2>
     <div class="example">
-        <button onclick="onPush('foo')">window.history.pushState('foo')</button><br/>
-        <button onclick="onPush('bar')">window.history.pushState('bar')</button><br/>
-        <button onclick="onPush('baz')">window.history.pushState('baz')</button><br/>
-        <button onclick="onReplace('foo')">window.history.replaceState('foo')</button><br/>
-        <button onclick="onReplace('bar')">window.history.replaceState('bar')</button><br/>
+        <button onclick="onPush('foo')">window.history.pushState('foo')</button><br />
+        <button onclick="onPush('bar')">window.history.pushState('bar')</button><br />
+        <button onclick="onPush('baz')">window.history.pushState('baz')</button><br />
+        <button onclick="onReplace('foo')">window.history.replaceState('foo')</button><br />
+        <button onclick="onReplace('bar')">window.history.replaceState('bar')</button><br />
         <button onclick="onReplace('baz')">window.history.replaceState('baz')</button>
     </div>
     <div class="example">
