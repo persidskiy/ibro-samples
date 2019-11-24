@@ -30,6 +30,24 @@ def two_http_2():
     return "Two HTTP"
 
 
+# Complex
+
+@app.route('/complex')
+def complex_redirect():
+    return redirect("/complex-1", code=302)
+
+@app.route('/complex-1')
+def complex_redirect_1():
+    return render_template("client_js_complex.html")
+
+@app.route('/complex-2')
+def complex_redirect_2():
+    return redirect("/complex-3", code=302)
+
+@app.route('/complex-3')
+def complex_redirect_3():
+    return "Complex 3"
+
 # Client JS
 @app.route("/client-js")
 def client_js():
