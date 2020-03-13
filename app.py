@@ -1,7 +1,11 @@
 import os
+import time
 from flask import Flask,redirect, render_template
 
 app = Flask(__name__)
+
+def redirect_final(text):
+    return render_template("final.html", text=text)
 
 @app.route('/')
 def hello():
@@ -14,7 +18,7 @@ def simple():
 
 @app.route('/simple-1')
 def simple_1():
-    return "Simple 1"
+    return redirect_final("Simple 1")
 
 # Two HTTP
 @app.route('/two-http')
@@ -27,7 +31,7 @@ def two_http_1():
 
 @app.route('/two-http-2')
 def two_http_2():
-    return "Two HTTP"
+    return redirect_final("Two HTTP")
 
 
 # Complex
@@ -46,7 +50,7 @@ def complex_redirect_2():
 
 @app.route('/complex-3')
 def complex_redirect_3():
-    return "Complex 3"
+    return redirect_final("Complex 3")
 
 # Client JS
 @app.route("/client-js")
@@ -55,7 +59,7 @@ def client_js():
 
 @app.route("/client-js-1")
 def client_1():
-    return "Client JS 1"
+    return redirect_final("Client JS 1")
 
 # Client meta
 @app.route("/client-meta")
@@ -64,7 +68,24 @@ def client_meta():
 
 @app.route("/client-meta-1")
 def client_meta_1():
-    return "Client Meta 1"
+    return redirect_final("Client Meta 1")
+
+
+# Slow pages
+@app.route("/slow-provision")
+def slow_provision():
+    time.sleep(20)
+    return "Loaded"
+
+@app.route("/slow-client-loading")
+def slow_client():
+    return render_template("slowpage.html")
+
+# Forms
+@app.route("/post-form", methods=["POST"])
+def post_form():
+    return redirect_final("Ok")
+
 
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.

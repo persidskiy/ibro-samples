@@ -36,12 +36,6 @@
 
 <body>
     <h1>Index</h1>
-    <!-- <ul>
-        <li><a href="/">Index</a></li>
-        <li><a href="page1.html">Page 1</a></li>
-        <li><a href="page2.html">Page 2</a></li>
-    </ul> -->
-
     <h2>Redirects</h2>
     <ul>
         <li><a href="/simple">Simple HTTP Redirect</a></li>
@@ -51,15 +45,27 @@
         <li><a href="/complex">HTTP redirect -> Client Redirect -> HTTP redirect</a></li>
     </ul>
 
+    <h2>Slow pages</h2>
+    <ul>
+        <li><a href="/slow-provision">Slow provision (sleeps 20 sec on server)</a></li>
+        <li><a href="/slow-client-loading">Slow client (sleeps 20 sec on client)</a></li>
+    </ul>
+
     <h2>Basic navigation API</h2>
     <div class="example">
         <button onclick="window.history.back()">window.history.back()</button><br />
         <button onclick="window.history.forward()">window.history.forward()</button><br />
         <button onclick="window.history.go()">window.history.go()</button>
     </div>
+
+    <h2>Forms</h2>
     <div class="example">
-        window.history.<button onclick="window.history.go(parseInt($('go-input').value, 10))">go</button>(<input
-            size="3" id="go-input" value=1 />);
+        <form action="/post-form" method="post">
+            <button type="submit">Send Post to /post-form</button>
+        </form>
+        <form action="https://asdfasdfasdfasdf.com" method="post">
+            <button type="submit">Send Post to unknown page</button>
+        </form>
     </div>
 
     <h2>PushState/ReplaceState</h2>
@@ -75,10 +81,27 @@
         State: <span id="state-container"></span>
     </div>
 
+    <h2>New tab navigations</h2>
+    <ul>
+        <li><a target="_blank" href="https://yandex.ru">yandex.ru -- target=_blank</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://yandex.ru">yandex.ru -- target="_blank" rel="noopener noreferrer"</a></li>
+        <li><a target="_blank" href="/">/ -- target=_blank</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="/">/ -- target="_blank" rel="noopener noreferrer"</a></li>
+        <li><form target="_blank" action="/"><button type=submit>/ -- target="_blank"</button></form></li>
+        <li><form target="_blank" rel="noopener noreferrer" action="/"><button type=submit>/ -- target="_blank" rel="noopener noreferrer"</button></form></li>
+        <li><button onclick="window.open('/')">window.open("/")</button> <button onclick="window.close()">window.close()</button></li>
+    </ul>
+
     <h2>Anchor navigations</h2>
     <ul>
         <li><a href="#paragraph1">Paragraph 1</a></li>
         <li><a href="#paragraph2">Paragraph 2</a></li>
+    </ul>
+
+    <h2>Alerts</h2>
+    <ul>
+        <li><button onclick="window.alert('Hello world')">alert('Hello world')</button></li>
+        <li><button onclick="window.prompt('Hello world')">prompt('Hello world')</button></li>
     </ul>
 
     <p id="paragraph1" class="anchor-paragraph">
