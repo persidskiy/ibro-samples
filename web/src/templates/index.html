@@ -35,7 +35,7 @@
 </head>
 
 <body>
-    <h1>Index</h1>
+    <h1>IBRO Samples</h1>
     <h2>Redirects</h2>
     <ul>
         <li><a href="/simple">Simple HTTP Redirect</a></li>
@@ -84,12 +84,20 @@
     <h2>New tab navigations</h2>
     <ul>
         <li><a target="_blank" href="https://yandex.ru">yandex.ru -- target=_blank</a></li>
-        <li><a target="_blank" rel="noopener noreferrer" href="https://yandex.ru">yandex.ru -- target="_blank" rel="noopener noreferrer"</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://yandex.ru">yandex.ru -- target="_blank"
+                rel="noopener noreferrer"</a></li>
         <li><a target="_blank" href="/">/ -- target=_blank</a></li>
-        <li><a target="_blank" rel="noopener noreferrer" href="/">/ -- target="_blank" rel="noopener noreferrer"</a></li>
-        <li><form target="_blank" action="/"><button type=submit>/ -- target="_blank"</button></form></li>
-        <li><form target="_blank" rel="noopener noreferrer" action="/"><button type=submit>/ -- target="_blank" rel="noopener noreferrer"</button></form></li>
-        <li><button onclick="window.open('/')">window.open("/")</button> <button onclick="window.close()">window.close()</button></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="/">/ -- target="_blank" rel="noopener noreferrer"</a>
+        </li>
+        <li>
+            <form target="_blank" action="/"><button type=submit>/ -- target="_blank"</button></form>
+        </li>
+        <li>
+            <form target="_blank" rel="noopener noreferrer" action="/"><button type=submit>/ -- target="_blank"
+                    rel="noopener noreferrer"</button></form>
+        </li>
+        <li><button onclick="window.open('/')">window.open("/")</button> <button
+                onclick="window.close()">window.close()</button></li>
     </ul>
 
     <h2>Anchor navigations</h2>
@@ -103,6 +111,27 @@
         <li><button onclick="window.alert('Hello world')">alert('Hello world')</button></li>
         <li><button onclick="window.prompt('Hello world')">prompt('Hello world')</button></li>
     </ul>
+
+    <h2>Custom links</h2>
+    <h4>Appstore links</h4>
+    {% macro link_with_redirect(title, href) -%}
+    {{title}} - <a href="{{href}}">{{href}}</a> (<a href="/generic-redirect?url={{href|urlencode}}">after
+        redirect</a>)
+    {%- endmacro %}
+    <ul>
+        <li>{{ link_with_redirect('Yandex Browser', 'https://apps.apple.com/ru/app/yandex-browser-for-iphone/id483693909') }}
+        </li>
+    </ul>
+    <h4>Url Schemes</h4>
+    <h4>
+        <li>{{ link_with_redirect('Calendar', 'calshow://') }}</li>
+        <li>{{ link_with_redirect('App Store', 'itms-apps://itunes.apple.com') }}</li>
+        <li>{{ link_with_redirect('Twitter', 'twitter://') }}</li>
+        <li>{{ link_with_redirect('Chrome', 'googlechrome://') }}</li>
+        <li>{{ link_with_redirect('Yandex.Maps', 'yandexmaps://') }}</li>
+        <li>{{ link_with_redirect('Mailto', 'mailto:hello@example.com') }}</li>
+        <li>{{ link_with_redirect('Tel', 'tel:+1123-456-7890') }}</li>
+    </h4>
 
     <p id="paragraph1" class="anchor-paragraph">
         Paragraph 1.

@@ -1,0 +1,14 @@
+version: "3"
+services:
+  sut:
+    build:
+      context: ./web
+      dockerfile: Dockerfile.test
+    volumes:
+      - "./web/tests:/tests"
+    command: "python3 /tests/run_tests.py"
+    depends_on:
+      - web
+  web:
+    environment:
+      - MODE=PRODUCTION

@@ -1,0 +1,9 @@
+version: "3"
+services:
+  web:
+    ports:
+      - "${PORT:-8080}:8080"
+    volumes:
+      - "./web/src:/src"
+    environment:
+      - MODE=DEBUG
