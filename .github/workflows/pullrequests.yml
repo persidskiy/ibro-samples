@@ -1,9 +1,9 @@
-name: Docker
+name: Pull Requests
 
 on:
   # Run tests for any PRs.
   pull_request:
-    branches: 
+    branches:
       - master
 
 jobs:
