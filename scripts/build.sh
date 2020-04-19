@@ -11,7 +11,8 @@ echo "build"
 docker-compose -f docker-stack.yml build
 
 echo "login to docker registry"
-docker login --username json_key --password $CR_KEY cr.yandex
+printf '%s' "$CR_KEY" > key.json
+cat key.json | docker login --username json_key --password-stdin cr.yandex
 
 echo "push"
 docker-compose -f docker-stack.yml push

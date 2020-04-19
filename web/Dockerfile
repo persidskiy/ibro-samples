@@ -10,6 +10,6 @@ RUN \
 
 EXPOSE 8080
 
-COPY src /
+COPY src /src
 
 ENTRYPOINT ["/entrypoint.sh"]
