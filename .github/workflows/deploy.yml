@@ -1,0 +1,37 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Test master
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run tests
+        run: ./scripts/test.sh
+
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    needs: test
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build
+      run : LE_FQDN=ibro.best LE_EMAIL=${{ secrets.EMAIL }} CR_KEY=${{ secrets.CR_KEY }} ./scripts/build.sh
+
+    - name: Deploy to swarm
+      uses: sagebind/docker-swarm-deploy-action@v2
+      with:
+        remote_host: ${{ secrets.SWARM_HOST }}
+        ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
+        ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
+        args: stack deploy --compose-file docker-stack.yml ibro-samples
