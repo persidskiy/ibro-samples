@@ -1,0 +1,31 @@
+version: "3"
+services:
+  web:
+    environment:
+      - MODE=PRODUCTION
+
+  nginx:
+    build: nginx
+    hostname: nginx
+    restart: always
+    container_name: nginx
+    depends_on:
+      - web
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+    volumes:
+      - /opt/ibro-samples/ssl:/etc/nginx/ssl
+    ports:
+      - "80:80"
+      - "443:443"
+
+    environment:
+      - TZ=Europe/Moscow
+      - LETSENCRYPT=true
+      - LE_EMAIL=${LE_EMAIL}
+      - LE_FQDN=${LE_FQDN}
