@@ -1,18 +1,31 @@
 import os
 import time
-from flask import Flask, redirect, render_template, request , abort
+from flask import Flask, redirect, render_template, request, abort
 
 app = Flask(__name__)
 
 APP_VERSION = os.getenv("APP_VERSION", "local-dev")
 
+
 def redirect_final(text):
-    return render_template("final.html", text=text)
+    return render_template("final.html", page_title="Redirect", text=text)
 
 
 @app.route('/')
-def hello():
-    return render_template("index.html", app_version=APP_VERSION)
+def home():
+    return render_template("index.html",
+                           page_title="IBRO samples",
+                           menu="home",
+                           app_version=APP_VERSION)
+
+
+@app.route('/urls')
+def custom_urls():
+    return render_template("custom_urls.html",
+                           page_title="Custom URLs",
+                           menu="urls",
+                           app_version=APP_VERSION)
+
 
 # Simple HTTP
 @app.route('/simple')
@@ -23,6 +36,7 @@ def simple():
 @app.route('/simple-1')
 def simple_1():
     return redirect_final("Simple 1")
+
 
 # Two HTTP
 @app.route('/two-http')
@@ -41,7 +55,6 @@ def two_http_2():
 
 
 # Complex
-
 @app.route('/complex')
 def complex_redirect():
     return redirect("/complex-1", code=302)
@@ -61,6 +74,7 @@ def complex_redirect_2():
 def complex_redirect_3():
     return redirect_final("Complex 3")
 
+
 # Client JS
 @app.route("/client-js")
 def client_js():
@@ -70,6 +84,7 @@ def client_js():
 @app.route("/client-js-1")
 def client_1():
     return redirect_final("Client JS 1")
+
 
 # Client meta
 @app.route("/client-meta")
@@ -100,6 +115,7 @@ def slow_provision():
 @app.route("/slow-client-loading")
 def slow_client():
     return render_template("slowpage.html")
+
 
 # Forms
 @app.route("/post-form", methods=["POST"])
