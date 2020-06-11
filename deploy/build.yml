@@ -1,0 +1,7 @@
+version: "3"
+services:
+  ibro_samples:
+    build:
+      context: ../web
+      args:
+        VERSION: ${GITHUB_SHA}

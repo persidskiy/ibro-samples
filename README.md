@@ -1,5 +1,9 @@
 # Sample pages for browser testing
 
+![Deploy](https://github.com/persidskiy/ibro-samples/workflows/Deploy/badge.svg)
+
+[https://ibro.best](https://ibro.best)
+
 How to develop locally:
 
 1. Install [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/install/)

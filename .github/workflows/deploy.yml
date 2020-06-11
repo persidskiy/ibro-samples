@@ -35,8 +35,8 @@ jobs:
     
     - name: Build
       run: |
-        docker-compose -f deploy.yml build
-        docker-compose -f deploy.yml push
+        docker-compose -f deploy/docker-compose.yml -f deploy/build.yml build
+        docker-compose -f deploy/docker-compose.yml -f deploy/build.yml push
     
     - name: Setup SSH
       uses: shimataro/ssh-key-action@v2
@@ -47,6 +47,6 @@ jobs:
       
     - name: Deploy
       run: |
-        ssh root@deploy.ibro.best 'mkdir -p /opt/ibro-samples'
-        scp deploy.yml root@deploy.ibro.best:/opt/ibro-samples/docker-compose.yml
-        ssh root@deploy.ibro.best 'cd /opt/ibro-samples && docker-compose pull && docker-compose down && docker-compose up -d'
+        ssh root@deploy.ibro.best 'mkdir -p /opt/ibro-samples && cd /opt/ibro-samples && if [ -e "docker-compose.yml" ]; then docker-compose down; fi'
+        scp -r deploy/* root@deploy.ibro.best:/opt/ibro-samples
+        ssh root@deploy.ibro.best GITHUB_SHA=$GITHUB_SHA /opt/ibro-samples/deploy.sh

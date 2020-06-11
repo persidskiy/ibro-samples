@@ -1,5 +1,7 @@
 FROM alpine:3.11.5
 
+ARG VERSION
+
 COPY entrypoint.sh /entrypoint.sh
 
 RUN \
@@ -11,5 +13,7 @@ RUN \
 EXPOSE 8080
 
 COPY src /src
+
+ENV APP_VERSION ${VERSION}
 
 ENTRYPOINT ["/entrypoint.sh"]

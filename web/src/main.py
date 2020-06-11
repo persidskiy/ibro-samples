@@ -4,6 +4,7 @@ from flask import Flask, redirect, render_template, request , abort
 
 app = Flask(__name__)
 
+APP_VERSION = os.getenv("APP_VERSION", "local-dev")
 
 def redirect_final(text):
     return render_template("final.html", text=text)
@@ -11,7 +12,7 @@ def redirect_final(text):
 
 @app.route('/')
 def hello():
-    return render_template("index.html")
+    return render_template("index.html", app_version=APP_VERSION)
 
 # Simple HTTP
 @app.route('/simple')

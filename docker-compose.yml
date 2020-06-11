@@ -1,7 +1,10 @@
 version: "3"
 services:
   web:
-    build: web
+    build:
+      context: ./web
+      args:
+        VERSION: ${GITHUB_SHA:-docker-dev}
     container_name: web
     hostname: web
     restart: always

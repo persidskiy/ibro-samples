@@ -1,7 +1,7 @@
 version: "3"
 services:
   ibro_samples:
-    image: coltspb/ibro-samples
+    image: coltspb/ibro-samples:${GITHUB_SHA}
     container_name: ibro_samples
     hostname: ibro_samples
     restart: always
@@ -15,6 +15,10 @@ services:
       
       - "traefik.http.routers.ibro_samples_http.rule=Host(`ibro.best`)"
       - "traefik.http.routers.ibro_samples_http.entrypoints=web"
+      
+      - "traefik.http.routers.ibro_samples_dev.rule=Host(`dev.ibro.best`)"
+      - "traefik.http.routers.ibro_samples_dev.entrypoints=websecure"
+      - "traefik.http.routers.ibro_samples_dev.tls.certresolver=leresolver"
     networks:
       - frontend
 
