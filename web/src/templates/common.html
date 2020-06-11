@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{page_title}}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script>
+        function escapeHtml(unsafe) {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+        function $(id) {
+            return document.getElementById(id)
+        }
+        var onStateChange = function () {
+            $('state-container').innerHTML = window.history.state;
+        }
+        function onPush(state) {
+            window.history.pushState(state, '', '/' + state);
+            onStateChange(state);
+        }
+        function onReplace(state) {
+            window.history.replaceState(state, '', '/' + state);
+            onStateChange(state);
+        }
+        window.onpopstate = onStateChange;
+    </script>
+    <style>
+        .example {
+            margin: 15px 0;
+        }
+
+        .anchor-paragraph {
+            margin-top: 1500px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <div class="container-xl">
+            <a class="navbar-brand" href="{{ url_for('home') }}">IBRO samples</a>
+            <div class="navbar-nav">
+                <a class="nav-item nav-link {%if menu == 'urls' %}active{% endif %} "
+                    href="{{ url_for('custom_urls') }}">Custom URLs</a>
+            </div>
+        </div>
+    </nav>
+    <main role="main" class="container-xl">
+        {% block content %}{%endblock%}
+    </main>
+</body>
+
+</html>

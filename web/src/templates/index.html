@@ -1,148 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'common.html' %}
+{% block content %}
+<p class="text-muted">ver: {{ app_version }}</p>
+<div class="row">
+    <div class=col-sm>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Redirects</h5>
+                <ul>
+                    <li><a href="/simple">Simple HTTP Redirect</a></li>
+                    <li><a href="/two-http">Two HTTP Redirects</a></li>
+                    <li><a href="/client-js">Client Side JS Redirect</a></li>
+                    <li><a href="/client-meta">Client Side Meta tag Redirect</a></li>
+                    <li><a href="/complex">HTTP redirect -> Client Redirect -> HTTP redirect</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Forms</h5>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Index</title>
-    <script>
-        function $(id) {
-            return document.getElementById(id)
-        }
-        var onStateChange = function () {
-            $('state-container').innerHTML = window.history.state;
-        }
-        function onPush(state) {
-            window.history.pushState(state, '', '/' + state);
-            onStateChange(state);
-        }
-        function onReplace(state) {
-            window.history.replaceState(state, '', '/' + state);
-            onStateChange(state);
-        }
-        window.onpopstate = onStateChange;
-    </script>
-    <style>
-        .example {
-            margin: 15px 0;
-        }
-
-        .anchor-paragraph {
-            margin-top: 1500px;
-        }
-        
-    </style>
-</head>
-
-<body>
-    <h1>IBRO Samples</h1>
-    <p>Version: {{ app_version }}</p>
-    <h2>Redirects</h2>
-    <ul>
-        <li><a href="/simple">Simple HTTP Redirect</a></li>
-        <li><a href="/two-http">Two HTTP Redirects</a></li>
-        <li><a href="/client-js">Client Side JS Redirect</a></li>
-        <li><a href="/client-meta">Client Side Meta tag Redirect</a></li>
-        <li><a href="/complex">HTTP redirect -> Client Redirect -> HTTP redirect</a></li>
-    </ul>
-
-    <h2>Slow pages</h2>
-    <ul>
-        <li><a href="/slow-provision">Slow provision (sleeps 20 sec on server)</a></li>
-        <li><a href="/slow-client-loading">Slow client (sleeps 20 sec on client)</a></li>
-    </ul>
-
-    <h2>Basic navigation API</h2>
-    <div class="example">
-        <button onclick="window.history.back()">window.history.back()</button><br />
-        <button onclick="window.history.forward()">window.history.forward()</button><br />
-        <button onclick="window.history.go()">window.history.go()</button>
+                <form class="mb-1" action="/post-form" method="post">
+                    <button class="btn btn-sm btn-success" type="submit">Send POST to /post-form</button>
+                </form>
+                <form action="https://asdfasdfasdfasdf.com" method="post">
+                    <button class="btn btn-sm btn-danger" type="submit">Send POST to unknown page</button>
+                </form>
+            </div>
+        </div>
     </div>
 
-    <h2>Forms</h2>
-    <div class="example">
-        <form action="/post-form" method="post">
-            <button type="submit">Send Post to /post-form</button>
-        </form>
-        <form action="https://asdfasdfasdfasdf.com" method="post">
-            <button type="submit">Send Post to unknown page</button>
-        </form>
+    <div class=col-sm>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Slow pages</h5>
+
+                <ul>
+                    <li><a href="/slow-provision">Slow provision</a> <br /><span class="text-muted">Sleeps 20 sec on
+                            server. Navigation won't be commited until it wake up.</span></li>
+                    <li><a href="/slow-client-loading">Slow client</a> <br /> <span class="text-muted">Sleeps 20 sec on
+                            client, will hung up your browser for 20 sec after navigation commit.</span></li>
+                </ul>
+            </div>
+        </div>
     </div>
+</div>
 
-    <h2>PushState/ReplaceState</h2>
-    <div class="example">
-        <button onclick="onPush('foo')">window.history.pushState('foo')</button><br />
-        <button onclick="onPush('bar')">window.history.pushState('bar')</button><br />
-        <button onclick="onPush('baz')">window.history.pushState('baz')</button><br />
-        <button onclick="onReplace('foo')">window.history.replaceState('foo')</button><br />
-        <button onclick="onReplace('bar')">window.history.replaceState('bar')</button><br />
-        <button onclick="onReplace('baz')">window.history.replaceState('baz')</button>
+<div class="row">
+    <div class=col-sm>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Navigation api</h5>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Basic navigation</h6>
+                        <code>window.history.</code>
+                        <button class="btn btn-outline-primary btn-sm" onclick="window.history.back()">back()</button>
+                        <button class="btn btn-outline-primary btn-sm"
+                            onclick="window.history.forward()">forward()</button>
+                        <button class="btn btn-outline-primary btn-sm" onclick="window.history.go()">go()</button>
+                        <code></code>
+                        <div class="mb-1"></div>
+
+                        <h6>History api</h6>
+                        <code>window.history.pushState(</code>
+                        <button class="btn btn-outline-primary btn-sm" onclick="onPush('foo')">'foo'</button>
+                        <button class="btn btn-outline-primary btn-sm" onclick="onPush('bar')">'bar'</button>
+                        <button class="btn btn-outline-primary btn-sm" onclick="onPush('baz')">'baz'</button>
+                        <code>)</code>
+                        <div class="mb-1"></div>
+
+                        <code>window.history.replaceState(</code>
+                        <button class="btn btn-outline-primary btn-sm" onclick="onReplace('foo')">'foo'</button>
+                        <button class="btn btn-outline-primary btn-sm" onclick="onReplace('bar')">'bar'</button>
+                        <button class="btn btn-outline-primary btn-sm" onclick="onReplace('baz')">'baz'</button>
+                        <code>)</code>
+                        <div class="mb-1"></div>
+
+                        <code>window.history.state:  <span id="state-container"></span></code>
+                    </div>
+                    <div class="col-sm">
+                        <h6>Anchor navigations</h6>
+                        <ul>
+                            <li><a href="#fragment-1">#fragment-1</a></li>
+                            <li><a href="#fragment-2">#fragment-2</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="example">
-        State: <span id="state-container"></span>
+</div>
+
+<div class="row">
+    <div class=col-sm>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">New tab navigations</h5>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Links <code> {{ ' <a target="_blank" href="...">' }}</code>:</h6>
+                        <ul>
+                            <li><a target="_blank" href="https://yandex.ru">yandex.ru</a></li>
+                            <li><a target="_blank" rel="noopener noreferrer" href="https://yandex.ru">yandex.ru</a>
+                                <code>rel="noopener noreferrer"</code></li>
+                            <li><a target="_blank" href="/">/ (this page)</a></li>
+                            <li><a target="_blank" rel="noopener noreferrer" href="/">/ (this
+                                    page)</a><code> rel="noopener noreferrer"</code> </li>
+                        </ul>
+                        <h6>Forms <code> {{ ' <form target="_blank">' }}</code>:</h6>
+                        <form class="mb-1" target="_blank" action="/">
+                            <button class="btn btn-success btn-sm" type=submit>/ (this page)</button>
+                        </form>
+                        <form class="mb-2" target="_blank" rel="noopener noreferrer" action="/">
+                            <button class="btn btn-success btn-sm" type=submit>/ (this page)</button>
+                            <code>rel="noopener noreferrer"</code>
+                        </form>
+
+                        <h6>JS api</h6>
+                        <button class="btn btn-outline-primary btn-sm"
+                            onclick="window.open('/')">window.open('/')</button>
+                        <button class="btn btn-outline-secondary btn-sm"
+                            onclick="window.close()">window.close()</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
-    <h2>New tab navigations</h2>
-    <ul>
-        <li><a target="_blank" href="https://yandex.ru">yandex.ru -- target=_blank</a></li>
-        <li><a target="_blank" rel="noopener noreferrer" href="https://yandex.ru">yandex.ru -- target="_blank"
-                rel="noopener noreferrer"</a></li>
-        <li><a target="_blank" href="/">/ -- target=_blank</a></li>
-        <li><a target="_blank" rel="noopener noreferrer" href="/">/ -- target="_blank" rel="noopener noreferrer"</a>
-        </li>
-        <li>
-            <form target="_blank" action="/"><button type=submit>/ -- target="_blank"</button></form>
-        </li>
-        <li>
-            <form target="_blank" rel="noopener noreferrer" action="/"><button type=submit>/ -- target="_blank"
-                    rel="noopener noreferrer"</button></form>
-        </li>
-        <li><button onclick="window.open('/')">window.open("/")</button> <button
-                onclick="window.close()">window.close()</button></li>
-    </ul>
+<div class="row">
+    <div class=col-sm>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">JS Alerts</h5>
+                <div class="mb-1">
+                    <button class="btn btn-outline-primary btn-sm"
+                        onclick="window.alert('Hello')">alert('Hello')</button>
+                </div>
+                <div class="mb-1">
+                    <button class="btn btn-outline-primary btn-sm"
+                        onclick="$('prompt-out-1').innerHTML = escapeHtml(String(window.prompt('World')))">prompt('World')</button>
+                    <span id="prompt-out-1"></span>
+                </div>
+                <div class="mb-1">
+                    <button class="btn btn-outline-primary btn-sm"
+                        onclick="$('prompt-out-2').innerHTML = escapeHtml(String(window.prompt('World', 'default')))">prompt('World',
+                        'default')</button>
+                    <span id="prompt-out-2"></span>
+                </div>
+                <div class="mb-1">
+                    <button class="btn btn-outline-primary btn-sm"
+                        onclick="$('prompt-out-3').innerHTML = window.confirm('Okay?')">confirm('Okay?')</button>
+                    <span id="prompt-out-3"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <h2>Anchor navigations</h2>
-    <ul>
-        <li><a href="#paragraph1">Paragraph 1</a></li>
-        <li><a href="#paragraph2">Paragraph 2</a></li>
-    </ul>
 
-    <h2>Alerts</h2>
-    <ul>
-        <li><button onclick="window.alert('Hello world')">alert('Hello world')</button></li>
-        <li><button onclick="window.prompt('Hello world')">prompt('Hello world')</button></li>
-    </ul>
+<p id="fragment-1" class="anchor-paragraph">
+    Fragment 1.
+</p>
+<p id="fragment-2" class="anchor-paragraph">
+    Fragment 2.
+</p>
 
-    <h2>Custom links</h2>
-    <h4>Appstore links</h4>
-    {% macro link_with_redirect(title, href) -%}
-    {{title}} - <a href="{{href}}">{{href}}</a> (<a href="/generic-redirect?url={{href|urlencode}}">after
-        redirect</a>)
-    {%- endmacro %}
-    <ul>
-        <li>{{ link_with_redirect('Yandex Browser', 'https://apps.apple.com/ru/app/yandex-browser-for-iphone/id483693909') }}
-        </li>
-    </ul>
-    <h4>Url Schemes</h4>
-    <h4>
-        <li>{{ link_with_redirect('Calendar', 'calshow://') }}</li>
-        <li>{{ link_with_redirect('App Store', 'itms-apps://itunes.apple.com') }}</li>
-        <li>{{ link_with_redirect('Twitter', 'twitter://') }}</li>
-        <li>{{ link_with_redirect('Youtube', 'youtube://') }}</li>
-        <li>{{ link_with_redirect('Chrome', 'googlechrome://') }}</li>
-        <li>{{ link_with_redirect('Yandex.Maps', 'yandexmaps://') }}</li>
-        <li>{{ link_with_redirect('Mailto', 'mailto:hello@example.com') }}</li>
-        <li>{{ link_with_redirect('Tel', 'tel:+1123-456-7890') }}</li>
-    </h4>
 
-    <p id="paragraph1" class="anchor-paragraph">
-        Paragraph 1.
-    </p>
-    <p id="paragraph2" class="anchor-paragraph">
-        Paragraph 2.
-    </p>
-
-</body>
-
-</html>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'common.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-sm">
+        <p class="text-muted">ver: {{ app_version }}</p>
+        <h5>Appstore links</h5>
+        {% macro link_with_redirect(title, href) -%}
+        {{title}} - <a href="{{href}}">{{href}}</a> (<a href="/generic-redirect?url={{href|urlencode}}">after
+            redirect</a>)
+        {%- endmacro %}
+        <ul>
+            <li>{{ link_with_redirect('Yandex Browser', 'https://apps.apple.com/ru/app/yandex-browser-for-iphone/id483693909') }}
+            </li>
+        </ul>
+        <h5>Url Schemes</h5>
+
+        <ul>
+            <li>{{ link_with_redirect('Calendar', 'calshow://') }}</li>
+            <li>{{ link_with_redirect('App Store', 'itms-apps://itunes.apple.com') }}</li>
+            <li>{{ link_with_redirect('Twitter', 'twitter://') }}</li>
+            <li>{{ link_with_redirect('Youtube', 'youtube://') }}</li>
+            <li>{{ link_with_redirect('Chrome', 'googlechrome://') }}</li>
+            <li>{{ link_with_redirect('Yandex.Maps', 'yandexmaps://') }}</li>
+            <li>{{ link_with_redirect('Mailto', 'mailto:hello@example.com') }}</li>
+            <li>{{ link_with_redirect('Tel', 'tel:+1123-456-7890') }}</li>
+        </ul>
+
+    </div>
+</div>
+
+{% endblock %}
