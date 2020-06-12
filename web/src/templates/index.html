@@ -7,11 +7,11 @@
             <div class="card-body">
                 <h5 class="card-title">Redirects</h5>
                 <ul>
-                    <li><a href="/simple">Simple HTTP Redirect</a></li>
-                    <li><a href="/two-http">Two HTTP Redirects</a></li>
-                    <li><a href="/client-js">Client Side JS Redirect</a></li>
-                    <li><a href="/client-meta">Client Side Meta tag Redirect</a></li>
-                    <li><a href="/complex">HTTP redirect -> Client Redirect -> HTTP redirect</a></li>
+                    <li><a href="{{ url_for('redir.simple') }}">Simple 302 Redirect</a></li>
+                    <li><a href="{{ url_for('redir.two_http') }}">Two 302 Redirects</a></li>
+                    <li><a href="{{ url_for('redir.client_js') }}">Client Side JS Redirect</a></li>
+                    <li><a href="{{ url_for('redir.client_meta') }}">Client Side Meta tag Redirect</a></li>
+                    <li><a href="{{ url_for('redir.complex_1') }}">HTTP redirect -> JS Redirect -> HTTP redirect</a></li>
                 </ul>
             </div>
         </div>
@@ -19,7 +19,7 @@
             <div class="card-body">
                 <h5 class="card-title">Forms</h5>
 
-                <form class="mb-1" action="/post-form" method="post">
+                <form class="mb-1" action="{{ url_for('post_form' )}}" method="post">
                     <button class="btn btn-sm btn-success" type="submit">Send POST to /post-form</button>
                 </form>
                 <form action="https://asdfasdfasdfasdf.com" method="post">
@@ -35,10 +35,10 @@
                 <h5 class="card-title">Slow pages</h5>
 
                 <ul>
-                    <li><a href="/slow-provision">Slow provision</a> <br /><span class="text-muted">Sleeps 20 sec on
+                    <li><a href="{{ url_for('slow_provision') }}">Slow provision</a> <br /><span class="text-muted">Sleeps 20 sec on
                             server. Navigation won't be commited until it wake up.</span></li>
-                    <li><a href="/slow-client-loading">Slow client</a> <br /> <span class="text-muted">Sleeps 20 sec on
-                            client, will hung up your browser for 20 sec after navigation commit.</span></li>
+                    <li><a href="{{ url_for('slow_client') }}">Slow client</a> <br /> <span class="text-muted">Sleeps 20 sec on
+                            client (will hung up your browser) after navigation commit.</span></li>
                 </ul>
             </div>
         </div>
