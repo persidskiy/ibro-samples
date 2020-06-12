@@ -1,37 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SlowPage</title>
+{% extends 'common.html' %}
+{% block content %}
+<h5>SlowPage</h5>
+<p>
     <script>
-        function $(id) {
-            return document.getElementById(id)
-        }
         function sleepFor(sleepDuration) {
             var now = new Date().getTime();
             while (new Date().getTime() < now + sleepDuration) { /* do nothing */ }
         }
+        
+        sleepFor(20000);
+        document.write("sleeped");
+        console.log("sleeped");
     </script>
-    <style>
-        .example {
-            margin: 15px 0;
-        }
-    </style>
-</head>
-
-<body>
-    <h1>SlowPage</h1>
-    <p>
-        <script>
-            sleepFor(20000)
-            document.write("sleeped");
-            console.log("sleeped");
-        </script>
-    </p>
-    <p>loaded</p>
-</body>
-
-</html>
+</p>
+<p>loaded</p>
+{% endblock %}
