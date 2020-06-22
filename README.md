@@ -4,6 +4,8 @@
 
 [https://ibro.best](https://ibro.best)
 
+This site updates automatically when commit merges into `master`.
+
 ### Developing
 
 With docker:
@@ -18,7 +20,7 @@ Without docker:
 
 ```bash
 pip install -U flask
-FLASK_APP=web/src/main.py FLASK_DEBUG=1 FLASK_ENV=development flask run
+FLASK_APP=web/src/main.py FLASK_DEBUG=1 FLASK_ENV=development flask run -p 8080
 ```
 
 ### Running tests
