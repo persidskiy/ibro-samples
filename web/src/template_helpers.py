@@ -3,8 +3,7 @@ import urllib.parse
 from flask import url_for
 
 
-APP_VERSION = os.getenv("APP_VERSION", "local-dev")
-
+APP_VERSION = os.getenv("APP_VERSION")
 
 def setup_context_processors(app):
     @app.context_processor
