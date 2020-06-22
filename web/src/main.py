@@ -27,6 +27,18 @@ def custom_urls():
     return render_template("custom_urls.html",
                            page_title="Custom URLs",
                            menu="urls")
+                           
+@app.route("/readability")
+def readability():
+    return render_template("readability_markup.html",
+                           page_title="Readability Markup testing",
+                           menu="readability")
+                           
+@app.route("/other")
+def other():
+    return render_template("other.html",
+                           page_title="Other known tesing pages",
+                           menu="other")
 
 
 @app.route("/slow-provision")
