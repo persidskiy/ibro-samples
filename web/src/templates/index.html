@@ -8,11 +8,11 @@
 
 <div class="row">
     <div class="col-sm">
-        <ul>
+        <ol class="list-unstyled">
             {% for section in sections %}
             <li><a href="#{{ get_fragment(section) }}">{{section}}</a></li>
             {% endfor %}
-        </ul>
+        </ol>
     </div>
 </div>
 
@@ -22,13 +22,13 @@
         <div class="card mb-4">
             <div class="card-body">
                 {{ section_header(0) }}
-                <ul>
+                <ol>
                     <li><a href="{{ url_for('redir.simple') }}">Simple 302 Redirect</a></li>
                     <li><a href="{{ url_for('redir.two_http') }}">Two 302 Redirects</a></li>
                     <li><a href="{{ url_for('redir.client_js') }}">Client Side JS Redirect</a></li>
                     <li><a href="{{ url_for('redir.client_meta') }}">Client Side Meta tag Redirect</a></li>
                     <li><a href="{{ url_for('redir.complex_1') }}">HTTP redirect -> JS Redirect -> HTTP redirect</a></li>
-                </ul>
+                </ol>
             </div>
         </div>
         <div class="card mb-4">
@@ -50,14 +50,14 @@
             <div class="card-body">
                 {{ section_header(1) }}
 
-                <ul>
+                <ol>
                     <li><a href="{{ url_for('slow_provision') }}">Slow provision</a> <br /><span
                             class="text-muted">Sleeps 20 sec on
                             server. Navigation won't be commited until it wake up.</span></li>
                     <li><a href="{{ url_for('slow_client') }}">Slow client</a> <br /> <span class="text-muted">Sleeps 20
                             sec on
                             client (will hung up your browser) after navigation commit.</span></li>
-                </ul>
+                </ol>
             </div>
         </div>
     </div>
@@ -98,10 +98,10 @@
                     </div>
                     <div class="col-sm">
                         <h6>Anchor navigations</h6>
-                        <ul>
+                        <ol>
                             <li><a href="#fragment-1">#fragment-1</a></li>
                             <li><a href="#fragment-2">#fragment-2</a></li>
-                        </ul>
+                        </ol>
                     </div>
                 </div>
             </div>
@@ -117,14 +117,14 @@
                 <div class="row">
                     <div class="col-sm">
                         <h6>Links <code> {{ ' <a target="_blank" href="...">' }}</code>:</h6>
-                        <ul>
+                        <ol>
                             <li><a target="_blank" href="https://yandex.ru">yandex.ru</a></li>
                             <li><a target="_blank" rel="noopener noreferrer" href="https://yandex.ru">yandex.ru</a>
                                 <code>rel="noopener noreferrer"</code></li>
                             <li><a target="_blank" href="/">/ (this page)</a></li>
                             <li><a target="_blank" rel="noopener noreferrer" href="/">/ (this
                                     page)</a><code> rel="noopener noreferrer"</code> </li>
-                        </ul>
+                        </ol>
                         <h6>Forms <code> {{ ' <form target="_blank">' }}</code>:</h6>
                         <form class="mb-1" target="_blank" action="/">
                             <button class="btn btn-success btn-sm" type=submit>/ (this page)</button>
