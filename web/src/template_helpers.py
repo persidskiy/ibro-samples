@@ -18,5 +18,9 @@ def setup_context_processors(app):
         def url_for_redirect_js(url):
             return url_for('redir.generic_js', url=urllib.parse.quote(url, safe=''))
 
+        def get_fragment(string):
+            return string.lower().replace(' ', '-')
+
         return dict(url_for_redirect=url_for_redirect,
-                    url_for_redirect_js=url_for_redirect_js)
+                    url_for_redirect_js=url_for_redirect_js,
+                    get_fragment=get_fragment)

@@ -1,10 +1,27 @@
 {% extends 'common.html' %}
 {% block content %}
+{% set sections = ['Redirects', 'Slow pages', 'Forms', 'Navigation API', 'New tab navigations', 'JS Alerts'] %}
+
+{%macro section_header(idx) %}
+<h5 id="{{ get_fragment(sections[idx]) }}" class="card-title">{{sections[idx]}}</h5>
+{% endmacro %}
+
+<div class="row">
+    <div class="col-sm">
+        <ul>
+            {% for section in sections %}
+            <li><a href="#{{ get_fragment(section) }}">{{section}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+
 <div class="row">
     <div class=col-sm>
         <div class="card mb-4">
             <div class="card-body">
-                <h5 class="card-title">Redirects</h5>
+                {{ section_header(0) }}
                 <ul>
                     <li><a href="{{ url_for('redir.simple') }}">Simple 302 Redirect</a></li>
                     <li><a href="{{ url_for('redir.two_http') }}">Two 302 Redirects</a></li>
@@ -16,7 +33,7 @@
         </div>
         <div class="card mb-4">
             <div class="card-body">
-                <h5 class="card-title">Forms</h5>
+                {{ section_header(2) }}
 
                 <form class="mb-1" action="{{ url_for('post_form' )}}" method="post">
                     <button class="btn btn-sm btn-success" type="submit">Send POST to /post-form</button>
@@ -31,12 +48,14 @@
     <div class=col-sm>
         <div class="card mb-4">
             <div class="card-body">
-                <h5 class="card-title">Slow pages</h5>
+                {{ section_header(1) }}
 
                 <ul>
-                    <li><a href="{{ url_for('slow_provision') }}">Slow provision</a> <br /><span class="text-muted">Sleeps 20 sec on
+                    <li><a href="{{ url_for('slow_provision') }}">Slow provision</a> <br /><span
+                            class="text-muted">Sleeps 20 sec on
                             server. Navigation won't be commited until it wake up.</span></li>
-                    <li><a href="{{ url_for('slow_client') }}">Slow client</a> <br /> <span class="text-muted">Sleeps 20 sec on
+                    <li><a href="{{ url_for('slow_client') }}">Slow client</a> <br /> <span class="text-muted">Sleeps 20
+                            sec on
                             client (will hung up your browser) after navigation commit.</span></li>
                 </ul>
             </div>
@@ -48,7 +67,7 @@
     <div class=col-sm>
         <div class="card mb-4">
             <div class="card-body">
-                <h5 class="card-title">Navigation api</h5>
+                {{ section_header(3) }}
                 <div class="row">
                     <div class="col-sm">
                         <h6>Basic navigation</h6>
@@ -94,7 +113,7 @@
     <div class=col-sm>
         <div class="card mb-4">
             <div class="card-body">
-                <h5 class="card-title">New tab navigations</h5>
+                {{ section_header(4) }}
                 <div class="row">
                     <div class="col-sm">
                         <h6>Links <code> {{ ' <a target="_blank" href="...">' }}</code>:</h6>
@@ -131,7 +150,7 @@
     <div class=col-sm>
         <div class="card mb-4">
             <div class="card-body">
-                <h5 class="card-title">JS Alerts</h5>
+                {{ section_header(5) }}
                 <div class="mb-1">
                     <button class="btn btn-outline-primary btn-sm"
                         onclick="window.alert('Hello')">alert('Hello')</button>
