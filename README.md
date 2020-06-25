@@ -6,7 +6,7 @@
 
 This site updates automatically when commit merges into `master`.
 
-### Developing
+### Development
 
 With docker:
 
