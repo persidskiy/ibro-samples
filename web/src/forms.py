@@ -38,7 +38,7 @@ def change_password():
         'forms/change_password.html',
         menu='forms',
         forms_menu="change_password",
-        page_title="SignIn via Username")
+        page_title="Change Password")
 
 def respond_to_submit():
     form_json_str = json.dumps(request.form.to_dict(), indent=2)
