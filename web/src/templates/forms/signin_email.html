@@ -2,15 +2,15 @@
 {% block form_content %}
 
 <form method="POST" action="{{url_for('forms.handle_login', title='SignIn Ok')}}">
-    <div class="mb-3">
-      <label for="form-email" class="form-label">Email</label>
-      <input name="email" type="email" class="form-control" id="form-email">
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input name="password" type="password" class="form-control" id="exampleInputPassword1">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+  <div class="mb-3">
+    <label for="form-email" class="form-label">Email</label>
+    <input name="email" type="email" class="form-control" id="form-email">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
 {% endblock %}
