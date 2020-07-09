@@ -1,24 +1,23 @@
 import unittest
 import requests
 
-WEB_URL = "http://web:8080/"
+WEB_URL = "http://web:8080"
 
 class BasicTests(unittest.TestCase):
-    def test_index_page_responds_200(self):
-        req = requests.get(WEB_URL)
-        self.assertEqual(req.status_code, 200, "main page should respond 200")
-        
-    def test_urls_page_responds_200(self):
-        req = requests.get(WEB_URL + "urls")
-        self.assertEqual(req.status_code, 200, "main page should respond 200")
-        
-    def test_readability_page_responds_200(self):
-        req = requests.get(WEB_URL + "readability")
-        self.assertEqual(req.status_code, 200, "main page should respond 200")
-        
-    def test_other_links_page_responds_200(self):
-        req = requests.get(WEB_URL + "other")
-        self.assertEqual(req.status_code, 200, "main page should respond 200")
+    def test_pages_respond_200(self):
+        pages = [
+            "/",
+            "/urls"
+            "/readability",
+            "/other",
+            "/forms/signin",
+            "/forms/signin-email",
+            "/forms/signup",
+        ]
+
+        for page in pages:
+            req = requests.get(WEB_URL + page)
+            self.assertEqual(req.status_code, 200, "\"{}\" should respond 200".format(page))
 
 if __name__ == "__main__":
     unittest.main()
