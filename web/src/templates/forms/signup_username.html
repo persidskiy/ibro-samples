@@ -2,19 +2,19 @@
 {% block form_content %}
 
 <form method="POST" action="{{url_for('forms.handle_signup', title='Signup Ok')}}">
-    <div class="mb-3">
-      <label for="form-username" class="form-label">Username</label>
-      <input name="username" type="text" class="form-control" id="form-username">
-    </div>
-    <div class="mb-3">
-      <label for="from-password" class="form-label">Password</label>
-      <input name="password" type="password" class="form-control" id="a">
-    </div>
-    <div class="mb-3">
-      <label for="password-confirm" class="form-label">Confirm password</label>
-      <input name="password-confirm" type="password" class="form-control" id="password-confirm">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+  <div class="mb-3">
+    <label for="form-username" class="form-label">Username</label>
+    <input name="username" type="text" class="form-control" id="form-username">
+  </div>
+  <div class="mb-3">
+    <label for="form-password" class="form-label">Password</label>
+    <input name="password" type="password" class="form-control" id="form-password">
+  </div>
+  <div class="mb-3">
+    <label for="password-confirm" class="form-label">Confirm password</label>
+    <input name="password-confirm" type="password" class="form-control" id="password-confirm">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
 {% endblock %}

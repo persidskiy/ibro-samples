@@ -4,14 +4,18 @@
 <div class="row">
     <div class="col-sm-2">
         <div class="nav flex-column nav-pills mb-3">
-            <a class="nav-link {%if forms_menu == 'signin_username' %}active{% endif %}" href="{{ url_for('forms.signin_username') }}">SignIn</a>
-            <a class="nav-link {%if forms_menu == 'signin_email' %}active{% endif %}" href="{{ url_for('forms.signin_email') }}">Signin (Email)</a>
-            <a class="nav-link {%if forms_menu == 'signup_username' %}active{% endif %}" href="{{ url_for('forms.signup_username') }}">Signup</a>
-            <a class="nav-link {%if forms_menu == 'change_password' %}active{% endif %}" href="{{ url_for('forms.change_password') }}">Change Password</a>
+            <a class="nav-link {%if forms_menu == 'signin_username' %}active{% endif %}"
+                href="{{ url_for('forms.signin_username') }}">SignIn</a>
+            <a class="nav-link {%if forms_menu == 'signin_email' %}active{% endif %}"
+                href="{{ url_for('forms.signin_email') }}">Signin (Email)</a>
+            <a class="nav-link {%if forms_menu == 'signup_username' %}active{% endif %}"
+                href="{{ url_for('forms.signup_username') }}">Signup</a>
+            <a class="nav-link {%if forms_menu == 'change_password' %}active{% endif %}"
+                href="{{ url_for('forms.change_password') }}">Change Password</a>
         </div>
     </div>
     <div class="col-sm-6">
-       {%block form_content%}{%endblock%}
+        {%block form_content%}{%endblock%}
     </div>
 </div>
 
