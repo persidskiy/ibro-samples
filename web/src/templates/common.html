@@ -91,7 +91,7 @@
         a.app-version-badge:hover {
             color: inherit;
         }
-        
+
         .app-version-badge {
             margin-left: 1rem;
             margin-right: 1rem;
@@ -114,6 +114,8 @@
                             href="{{ url_for('home') }}">IBRO Samples</a>
                         <a class="nav-link  {%if menu == 'urls' %}active{% endif %}"
                             href="{{ url_for('custom_urls') }}">Custom URLs</a>
+                        <a class="nav-link {%if menu == 'forms' %}active{% endif %}"
+                            href="{{ url_for('forms.signin_username') }}">Forms</a>
                         <a class="nav-link {%if menu == 'readability' %}active{% endif %}"
                             href="{{ url_for('readability') }}">Readability</a>
                     </div>
