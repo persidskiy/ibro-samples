@@ -7,12 +7,13 @@ class BasicTests(unittest.TestCase):
     def test_pages_respond_200(self):
         pages = [
             "/",
-            "/urls"
-            "/readability",
-            "/other",
+            "/forms/other",
             "/forms/signin",
             "/forms/signin-email",
             "/forms/signup",
+            "/other",
+            "/readability",
+            "/urls"
         ]
 
         for page in pages:
