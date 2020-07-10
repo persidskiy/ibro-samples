@@ -48,6 +48,13 @@ def respond_to_submit():
         form_json_str=form_json_str,
         page_title=request.args.get('title', 'Ok'))
 
+@bp.route("/other")
+def other():
+    return render_template(
+        'forms/other_forms.html',
+        menu='forms',
+        forms_menu="other_forms",
+        page_title="Ohter Forms")
 
 @bp.route("/handle-login", methods=["POST"])
 def handle_login():
