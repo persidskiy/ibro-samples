@@ -7,7 +7,7 @@ class BasicTests(unittest.TestCase):
     def test_pages_respond_200(self):
         pages = [
             "/",
-            "/forms/other",
+            "/forms/more",
             "/forms/signin",
             "/forms/signin-email",
             "/forms/signup",
