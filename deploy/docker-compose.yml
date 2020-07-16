@@ -12,13 +12,15 @@ services:
       - "traefik.http.routers.ibro_samples.rule=Host(`ibro.best`)"
       - "traefik.http.routers.ibro_samples.entrypoints=websecure"
       - "traefik.http.routers.ibro_samples.tls.certresolver=leresolver"
-      
+
+      - "traefik.http.middlewares.https-redir.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.https-redir.redirectscheme.permanent=true"
       - "traefik.http.routers.ibro_samples_http.rule=Host(`ibro.best`)"
       - "traefik.http.routers.ibro_samples_http.entrypoints=web"
+      - "traefik.http.routers.ibro_samples_http.middlewares=https-redir"
       
-      - "traefik.http.routers.ibro_samples_dev.rule=Host(`dev.ibro.best`)"
-      - "traefik.http.routers.ibro_samples_dev.entrypoints=websecure"
-      - "traefik.http.routers.ibro_samples_dev.tls.certresolver=leresolver"
+      - "traefik.http.routers.ibro_samples_insecure.rule=Host(`insecure.ibro.best`)"
+      - "traefik.http.routers.ibro_samples_insecure.entrypoints=web"
     networks:
       - frontend
 
