@@ -3,16 +3,18 @@ name: Pull Requests
 on:
   # Run tests for any PRs.
   pull_request:
-    branches:
-      - master
 
 jobs:
-  test:
-    name: Test PR
-    runs-on: ubuntu-latest
+  # lint:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-python@v2
+  #     - uses: psf/black@stable
 
+  test:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
       - name: Run tests
         run: ./scripts/test.sh

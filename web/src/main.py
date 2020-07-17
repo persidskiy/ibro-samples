@@ -18,28 +18,28 @@ def redirect_final(text):
 
 @app.route("/")
 def home():
-    return render_template("index.html",
-                           page_title="IBRO samples",
-                           menu="home")
+    return render_template("index.html", page_title="IBRO samples", menu="home")
 
 
 @app.route("/urls")
 def custom_urls():
-    return render_template("custom_urls.html",
-                           page_title="Custom URLs",
-                           menu="urls")
+    return render_template("custom_urls.html", page_title="Custom URLs", menu="urls")
+
 
 @app.route("/readability")
 def readability():
-    return render_template("readability_markup.html",
-                           page_title="Readability Markup testing",
-                           menu="readability")
+    return render_template(
+        "readability_markup.html",
+        page_title="Readability Markup testing",
+        menu="readability",
+    )
+
 
 @app.route("/other")
 def other():
-    return render_template("other.html",
-                           page_title="Other known tesing pages",
-                           menu="other")
+    return render_template(
+        "other.html", page_title="Other known tesing pages", menu="other"
+    )
 
 
 @app.route("/slow-provision")
