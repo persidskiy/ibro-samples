@@ -31,3 +31,20 @@ Tests just check that pages are available and respond HTTP 200.
 docker-compose down # down currenly running dev containers if any
 ./scripts/test.sh
 ```
+
+### Coding style
+
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+Formatting python code
+
+```
+pip install black
+black .
+```
+
+Running git hooks using [Pre-commit](https://pre-commit.com/)
+```
+pip install pre-commit
+pre-commit install
+```

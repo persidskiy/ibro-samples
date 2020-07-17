@@ -18,7 +18,8 @@ def two_http():
 @bp.route("/two-http/2")
 def two_http_2():
     return redirect(url_for("redir.final", text="Two redirects final"), code=302)
-    
+
+
 # Complex
 @bp.route("/complex/1")
 def complex_1():
@@ -27,17 +28,29 @@ def complex_1():
 
 @bp.route("/complex/2")
 def complex_2():
-    return render_template("client_redir.html", type="js", url=url_for("redir.final", text="Final complex redirect"))
+    return render_template(
+        "client_redir.html",
+        type="js",
+        url=url_for("redir.final", text="Final complex redirect"),
+    )
 
 
 @bp.route("/client/js")
 def client_js():
-    return render_template("client_redir.html", type="js", url=url_for("redir.final", text="Final js cliet redirect"))
+    return render_template(
+        "client_redir.html",
+        type="js",
+        url=url_for("redir.final", text="Final js cliet redirect"),
+    )
 
 
 @bp.route("/client/meta")
 def client_meta():
-    return render_template("client_redir.html", type="meta", url=url_for("redir.final", text="Final meta client redirect"))
+    return render_template(
+        "client_redir.html",
+        type="meta",
+        url=url_for("redir.final", text="Final meta client redirect"),
+    )
 
 
 @bp.route("/final")
@@ -50,10 +63,9 @@ def final():
 def generic(url):
     url = urllib.parse.unquote(url)
     return redirect(url, code=302)
-    
+
 
 @bp.route("/generic-js/<url>")
 def generic_js(url):
     url = urllib.parse.unquote(url)
     return render_template("client_redir.html", type="js", url=url)
-

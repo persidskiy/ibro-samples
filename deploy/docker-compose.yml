@@ -18,15 +18,14 @@ services:
       - "traefik.http.routers.ibro_samples_http.rule=Host(`ibro.best`)"
       - "traefik.http.routers.ibro_samples_http.entrypoints=web"
       - "traefik.http.routers.ibro_samples_http.middlewares=https-redir"
-      
+
       - "traefik.http.routers.ibro_samples_insecure.rule=Host(`insecure.ibro.best`)"
       - "traefik.http.routers.ibro_samples_insecure.entrypoints=web"
     networks:
       - frontend
 
-      
+
 networks:
   frontend:
     external: true
-    
-  
+
