@@ -1,0 +1,12 @@
+{% extends 'forms/forms_common.html' %}
+{% block form_content %}
+
+<form method="POST" action="{{url_for('forms.handle_form', title='Subscription OK')}}">
+  <div class="mb-3">
+    <label for="form-email" class="form-label">Email:</label>
+    <input name="email" type="email" class="form-control" id="form-email">
+  </div>
+  <button type="submit" class="btn btn-primary">Subscribe</button>
+</form>
+
+{% endblock %}
