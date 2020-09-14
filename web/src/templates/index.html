@@ -72,25 +72,25 @@
                     <div class="col-sm">
                         <h6>Basic navigation</h6>
                         <code>window.history.</code>
-                        <button class="btn btn-outline-primary btn-sm" onclick="window.history.back()">back()</button>
-                        <button class="btn btn-outline-primary btn-sm"
+                        <button class="btn btn-primary btn-sm" onclick="window.history.back()">back()</button>
+                        <button class="btn btn-primary btn-sm"
                             onclick="window.history.forward()">forward()</button>
-                        <button class="btn btn-outline-primary btn-sm" onclick="window.history.go()">go()</button>
+                        <button class="btn btn-primary btn-sm" onclick="window.history.go()">go()</button>
                         <code></code>
                         <div class="mb-1"></div>
 
                         <h6>History api</h6>
                         <code>window.history.pushState(</code>
-                        <button class="btn btn-outline-primary btn-sm" onclick="onPush('foo')">'foo'</button>
-                        <button class="btn btn-outline-primary btn-sm" onclick="onPush('bar')">'bar'</button>
-                        <button class="btn btn-outline-primary btn-sm" onclick="onPush('baz')">'baz'</button>
+                        <button class="btn btn-primary btn-sm" onclick="onPush('foo')">'foo'</button>
+                        <button class="btn btn-primary btn-sm" onclick="onPush('bar')">'bar'</button>
+                        <button class="btn btn-primary btn-sm" onclick="onPush('baz')">'baz'</button>
                         <code>)</code>
                         <div class="mb-1"></div>
 
                         <code>window.history.replaceState(</code>
-                        <button class="btn btn-outline-primary btn-sm" onclick="onReplace('foo')">'foo'</button>
-                        <button class="btn btn-outline-primary btn-sm" onclick="onReplace('bar')">'bar'</button>
-                        <button class="btn btn-outline-primary btn-sm" onclick="onReplace('baz')">'baz'</button>
+                        <button class="btn btn-primary btn-sm" onclick="onReplace('foo')">'foo'</button>
+                        <button class="btn btn-primary btn-sm" onclick="onReplace('bar')">'bar'</button>
+                        <button class="btn btn-primary btn-sm" onclick="onReplace('baz')">'baz'</button>
                         <code>)</code>
                         <div class="mb-1"></div>
 
@@ -135,9 +135,9 @@
                         </form>
 
                         <h6>JS api</h6>
-                        <button class="btn btn-outline-primary btn-sm"
+                        <button class="btn btn-primary btn-sm"
                             onclick="window.open('/')">window.open('/')</button>
-                        <button class="btn btn-outline-secondary btn-sm"
+                        <button class="btn btn-secondary btn-sm"
                             onclick="window.close()">window.close()</button>
                     </div>
                 </div>
@@ -152,22 +152,22 @@
             <div class="card-body">
                 {{ section_header(5) }}
                 <div class="mb-1">
-                    <button class="btn btn-outline-primary btn-sm"
+                    <button class="btn btn-primary btn-sm"
                         onclick="window.alert('Hello')">alert('Hello')</button>
                 </div>
                 <div class="mb-1">
-                    <button class="btn btn-outline-primary btn-sm"
+                    <button class="btn btn-primary btn-sm"
                         onclick="$('prompt-out-1').innerHTML = escapeHtml(String(window.prompt('World')))">prompt('World')</button>
                     <span id="prompt-out-1"></span>
                 </div>
                 <div class="mb-1">
-                    <button class="btn btn-outline-primary btn-sm"
+                    <button class="btn btn-primary btn-sm"
                         onclick="$('prompt-out-2').innerHTML = escapeHtml(String(window.prompt('World', 'default')))">prompt('World',
                         'default')</button>
                     <span id="prompt-out-2"></span>
                 </div>
                 <div class="mb-1">
-                    <button class="btn btn-outline-primary btn-sm"
+                    <button class="btn btn-primary btn-sm"
                         onclick="$('prompt-out-3').innerHTML = window.confirm('Okay?')">confirm('Okay?')</button>
                     <span id="prompt-out-3"></span>
                 </div>

@@ -16,7 +16,7 @@
 
 {% macro file_url(filename) -%}
 {% set url = url_for('static', filename='files/' + filename) %}
-<a href="{{ url }}">{{filename}}</a> 
+<a href="{{ url }}">{{filename}}</a>
 {{redir_links(url)}}
 {%- endmacro %}
 
@@ -28,7 +28,7 @@
             <li>{{ link_with_redirect('Yandex Browser', 'https://apps.apple.com/ru/app/yandex-browser-for-iphone/id483693909') }}
             </li>
         </ul>
-        
+
         <h5>Universal links</h5>
         <ul>
             <li>{{ link_with_redirect('Youtube', 'https://www.youtube.com/watch?v=4BYvJfLo-X8') }}</li>
@@ -47,7 +47,7 @@
             <li><a href="https://zen.yandex.ru/?">https://zen.yandex.ru/?</a></li>
             <li><a href="https://zen.yandex.ru/?aaaaaa=">https://zen.yandex.ru/?aaaaaa=</a></li>
         </ul>
-        
+
         <h5>Url Schemes</h5>
         <ul>
             <li>{{ link_with_redirect('Calendar', 'calshow://') }}</li>
@@ -61,7 +61,7 @@
             <li>{{ link_with_redirect('Yandex.Market + Открытие каталога', 'yandexmarket://search?hid=90594') }}</li>
             <li>{{ link_with_redirect('Unknown Scheme', 'yandexmusi://') }}</li>
             <li>{{ link_with_redirect('Yandex.Music', 'yandexmusic://') }}</li>
-            <li>{{ link_with_redirect('Yandex.Music + Открытие треков', 'yandexmusic://artist/36791') }}</li>       
+            <li>{{ link_with_redirect('Yandex.Music + Открытие треков', 'yandexmusic://artist/36791') }}</li>
             <li>{{ link_with_redirect('Mailto', 'mailto:hello@example.com') }}</li>
             <li>{{ link_with_redirect('Mailto', 'mailto:') }}</li>
             <li>{{ link_with_redirect('Mailto', 'mailto://') }}</li>
@@ -134,6 +134,7 @@
             <ul>
                 <li><a href="http://vuupc.com/">vuupc.com</a></li>
                 <li>{{link_with_redirect('Мобильная подписка', 'http://ydx-mobile-subscription-shavar.cepera.ru')}}</li>
+                <li><a target="_blank" href="http://ydx-mobile-subscription-shavar.cepera.ru">Мобильная подписка</a> (<code>target="_blank"</code>)</li>
                 <li>Мобильная подписка (<a href="http://ydx-mobile-subscription-shavar.cepera.ru/">Ссылка</a>, <a
                         href="https://ibrotesting.github.io/ya/ms.html">JS</a>)</li>
                 <li>Мобильная подписка Редирект 302-ответ (<a
@@ -141,6 +142,9 @@
                 <li>Мобильная подписка. Редирект. В цепочке редиректов сайт с вердиктом. (<a
                         href="https://ibrotesting.github.io/ya/subscr2.html">Ссылка</a>)</li>
             </ul>
+            <div class="my-3">
+              <button class="btn btn-sm btn-primary" onclick="window.alert('JS is working')">Test JS is working</button>
+            </div>
 
     </div>
 </div>
