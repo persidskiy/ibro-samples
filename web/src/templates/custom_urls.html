@@ -1,23 +1,11 @@
 {% extends 'common.html' %}
-{% block content %}
+{% from 'macros.html' import redir_links with context %}
 
-{% macro redir_links(url) %}
-<code>[redirs: </code>
-<a href="{{ url_for_redirect(url) }}">302</a>
-<code>,</code>
-<a href="{{ url_for_redirect_js(url) }}">JS</a>
-<code> ]</code>
-{% endmacro %}
+{% block content %}
 
 {% macro link_with_redirect(title, url) -%}
 {{title}} - <a href="{{url}}">{{url}}</a>
 {{ redir_links(url) }}
-{%- endmacro %}
-
-{% macro file_url(filename) -%}
-{% set url = url_for('static', filename='files/' + filename) %}
-<a href="{{ url }}">{{filename}}</a>
-{{redir_links(url)}}
 {%- endmacro %}
 
 <div class="row">
@@ -103,15 +91,7 @@
             <li><a href="https://yandex.ru/chat/#/join/a2242c54-6e5f-4fa0-b871-a05a284621b7">invite-link</a></li>
         </ul>
 
-        <h5>Download files</h5>
-        <ul>
-            <li>{{ file_url('PDFdoc.pdf') }}</li>
-            <li>{{ file_url('Presentation.pptx') }}</li>
-            <li>{{ file_url('Word.docx') }}</li>
-            <li>{{ file_url('Excel.xlsx') }}</li>
-        </ul>
-
-        <h6>External resources</h5>
+        <h5>External resources</h5>
             <ul>
                 <li>FB2 (<a
                         href="http://fb2-epub.ru/load/1001/vlastelin_kolec_bratstvo_kolca/665-1-0-27">Ссылка-fb2-epub.ru</a>,

@@ -45,6 +45,7 @@ def change_password():
         page_title="Change Password",
     )
 
+
 @bp.route("/email-subscription")
 def email_subscription():
     return render_template(
@@ -53,6 +54,7 @@ def email_subscription():
         forms_menu="email_subscription",
         page_title="Email Subscription",
     )
+
 
 def respond_to_submit():
     form_json_str = json.dumps(request.form.to_dict(), indent=2)

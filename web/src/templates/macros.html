@@ -1,0 +1,16 @@
+{% macro redir_links(url) %}
+<code>[redirs: </code>
+<a href="{{ url_for_redirect(url) }}">302</a>
+<code>,</code>
+<a href="{{ url_for_redirect_js(url) }}">JS</a>
+<code> ]</code>
+{% endmacro %}
+
+{% macro static_file_url(filename) -%}
+{% set url = url_for('static', filename='files/' + filename) %}
+
+<a href="{{ url }}">{{filename}}</a>
+
+{{redir_links(url)}}
+
+{%- endmacro %}

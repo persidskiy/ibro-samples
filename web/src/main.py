@@ -1,15 +1,15 @@
 import os
 import time
 
-from flask import Flask, redirect, render_template, request, abort
+from flask import Flask, redirect, render_template, request, abort, Blueprint
 from template_helpers import setup_context_processors
-from redirs import bp as redirs_bp
-from forms import bp as forms_bp
+import file_download, redirs, forms
 
 app = Flask(__name__)
 setup_context_processors(app)
-app.register_blueprint(redirs_bp)
-app.register_blueprint(forms_bp)
+app.register_blueprint(redirs.bp)
+app.register_blueprint(forms.bp)
+app.register_blueprint(file_download.bp)
 
 
 def redirect_final(text):
