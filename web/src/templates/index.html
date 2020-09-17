@@ -1,10 +1,15 @@
 {% extends 'common.html' %}
+{% from 'macros.html' import static_file_url with context %}
+
+
 {% block content %}
-{% set sections = ['Redirects', 'Slow pages', 'Forms', 'Navigation API', 'New tab navigations', 'JS Alerts'] %}
+{% set sections = ['Redirects', 'Slow pages', 'Forms', 'Navigation API', 'New tab navigations', 'JS API', 'File Downloads'] %}
 
 {%macro section_header(idx) %}
 <h5 id="{{ get_fragment(sections[idx]) }}" class="card-title">{{sections[idx]}}</h5>
 {% endmacro %}
+
+
 
 <div class="row">
     <div class="col-sm">
@@ -153,24 +158,66 @@
                 {{ section_header(5) }}
                 <div class="mb-1">
                     <button class="btn btn-primary btn-sm"
-                        onclick="window.alert('Hello')">alert('Hello')</button>
+                        onclick="window.alert('Hello')">window.alert('Hello')</button>
                 </div>
                 <div class="mb-1">
                     <button class="btn btn-primary btn-sm"
-                        onclick="$('prompt-out-1').innerHTML = escapeHtml(String(window.prompt('World')))">prompt('World')</button>
+                        onclick="$('prompt-out-1').innerHTML = escapeHtml(String(window.prompt('World')))">window.prompt('World')</button>
                     <span id="prompt-out-1"></span>
                 </div>
                 <div class="mb-1">
                     <button class="btn btn-primary btn-sm"
-                        onclick="$('prompt-out-2').innerHTML = escapeHtml(String(window.prompt('World', 'default')))">prompt('World',
+                        onclick="$('prompt-out-2').innerHTML = escapeHtml(String(window.prompt('World', 'default')))">window.prompt('World',
                         'default')</button>
                     <span id="prompt-out-2"></span>
                 </div>
                 <div class="mb-1">
                     <button class="btn btn-primary btn-sm"
-                        onclick="$('prompt-out-3').innerHTML = window.confirm('Okay?')">confirm('Okay?')</button>
+                        onclick="$('prompt-out-3').innerHTML = window.confirm('Okay?')">window.confirm('Okay?')</button>
                     <span id="prompt-out-3"></span>
                 </div>
+                <div class="mb-1">
+                    <button class="btn btn-primary btn-sm" onclick="window.print()">window.print()</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=col-sm>
+        <div class="card mb-4">
+            <div class="card-body">
+                {{ section_header(6) }}
+                  <h6>Supported in WKWebView</h6>
+                  <ul class ="mb-2">
+                      <li>{{ static_file_url('PDFdoc.pdf') }}</li>
+                      <li>{{ static_file_url('Presentation.pptx') }}</li>
+                      <li>{{ static_file_url('Word.docx') }}</li>
+                      <li>{{ static_file_url('Excel.xlsx') }}</li>
+                    <li>
+                      <a href="{{url_for('file_download.download', filename='PDFdoc.pdf')}}">PDFdoc.pdf</a> <span class="text-muted">Downloads only when cookie is set.</span>
+                    </li>
+
+                  </ul>
+                  <h6>Not supported</h6>
+                  <ul class="mb-2">
+                    <li>
+                      <a href="{{url_for('static', filename='files/dummy10.dmg')}}">dummy10.dmg</a>
+                    </li>
+                    <li>
+                      <a href="{{url_for('file_download.download', filename='dummy15.dmg')}}">dummy15.dmg</a> <span class="text-muted">Downloads only when cookie is set.</span>
+                    </li>
+                  </ul>
+                  <div class="mb-1 mt-4">
+                    {% if download_cookie_is_set %}
+                    <form action="{{url_for('file_download.unset_cookie')}}" method="post">
+                      <button class="btn btn-sm btn-danger" type="submit">Unset Cookie</button>
+                    </form>
+                    {% else %}
+                    <form action="{{url_for('file_download.set_cookie')}}" method="post">
+                      <button class="btn btn-sm btn-primary" type="submit">Set Cookie</button>
+                    </form>
+                    {% endif %}
+                  </div>
+
             </div>
         </div>
     </div>

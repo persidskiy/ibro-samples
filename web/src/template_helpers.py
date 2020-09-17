@@ -1,6 +1,7 @@
 import os
 import urllib.parse
 from flask import url_for
+from file_download import is_cookie_set
 
 
 APP_VERSION = os.getenv("APP_VERSION")
@@ -8,8 +9,8 @@ APP_VERSION = os.getenv("APP_VERSION")
 
 def setup_context_processors(app):
     @app.context_processor
-    def app_version_processor():
-        return dict(app_version=APP_VERSION)
+    def app_state_processor():
+        return dict(app_version=APP_VERSION, download_cookie_is_set=is_cookie_set())
 
     @app.context_processor
     def utilitity_processor():
