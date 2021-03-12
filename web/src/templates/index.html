@@ -62,6 +62,8 @@
                     <li><a href="{{ url_for('slow_client') }}">Slow client</a> <br /> <span class="text-muted">Sleeps 20
                             sec on
                             client (will hung up your browser) after navigation commit.</span></li>
+                    <li><a href="{{ url_for('replace_state') }}">Replace state before finish loading</a> <br />
+                      <span class="text-muted">Calls same-document navigation before finish loading</span></li>
                 </ol>
             </div>
         </div>

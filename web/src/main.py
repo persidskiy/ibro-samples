@@ -52,6 +52,10 @@ def slow_provision():
 def slow_client():
     return render_template("slowpage.html")
 
+@app.route("/replace-state")
+def replace_state():
+    return render_template("replace_state.html")
+
 
 @app.route("/post-form", methods=["POST"])
 def post_form():
