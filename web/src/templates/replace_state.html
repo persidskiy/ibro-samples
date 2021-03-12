@@ -1,0 +1,40 @@
+{% extends 'common.html' %}
+{% block content %}
+<p>
+  This page replaces state before finish loading. The sequence is:
+</p>
+<ol>
+  <li>start provision loading</li>
+  <li>commit</li>
+  <li>same-document navigation via <code>window.history.replaceState</code></li>
+  <li>sleep 5 sec in js</li>
+  <li>finish loading</li>
+</ol>
+<p>
+  <a href="{{ url_for('replace_state') }}">Original page</a>
+</p>
+
+<ul>
+  <li>
+    <code>
+      <script>
+        let state = "random=" + Math.floor(Math.random() * 100);
+        window.history.replaceState(state, "", "{{ url_for('replace_state') }}?" + state);
+        document.write("my url: " + window.location.href);
+      </script>
+    </code>
+  </li>
+  <li>
+    <script>
+      function sleepFor(sleepDuration) {
+        var now = new Date().getTime();
+        while (new Date().getTime() < now + sleepDuration) { /* do nothing*/ }
+      }
+
+      sleepFor(5000);
+      document.write("sleeped & loaded");
+      console.log("sleeped & loaded");
+    </script>
+  </li>
+</ul>
+{% endblock %}

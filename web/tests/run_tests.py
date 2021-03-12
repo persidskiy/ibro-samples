@@ -16,6 +16,8 @@ class BasicTests(unittest.TestCase):
             "/other",
             "/readability",
             "/urls",
+            "/slow-client-loading",
+            "/replace-state",
         ]
 
         for page in pages:
