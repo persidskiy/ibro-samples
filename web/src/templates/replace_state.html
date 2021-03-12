@@ -16,13 +16,11 @@
 
 <ul>
   <li>
-    <code>
-      <script>
-        let state = "random=" + Math.floor(Math.random() * 100);
-        window.history.replaceState(state, "", "{{ url_for('replace_state') }}?" + state);
-        document.write("my url: " + window.location.href);
-      </script>
-    </code>
+    <script>
+      let state = "random=" + Math.floor(Math.random() * 100);
+      window.history.replaceState(state, "", "{{ url_for('replace_state') }}?" + state);
+      document.write("Current url:  <code>" + window.location.href + "</code>");
+    </script>
   </li>
   <li>
     <script>
@@ -33,7 +31,7 @@
 
       sleepFor(5000);
       document.write("sleeped & loaded");
-      console.log("sleeped & loaded");
+      console.log("Sleeped & loaded");
     </script>
   </li>
 </ul>
