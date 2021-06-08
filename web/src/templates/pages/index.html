@@ -1,0 +1,18 @@
+{% extends 'common.html' %}
+{% block content %}
+
+<ul>
+  <li><a href="{{ url_for('pages.readability') }}">Readability Markup testing</a></li>
+  <li><a href="{{ url_for('pages.youtube') }}">YouTube embeds</a></li>
+</ul>
+
+<h5>Other Known testing pages</h5>
+<ul>
+  <li><a href="https://ibrotesting.github.io/ya/">ibrotesting</a></li>
+  <li><a href="https://codepen.io/ilessangles/full/qGqgJx">Search app url schemes</a></li>
+  <li><a href="https://sdelano.net">sdelano.net - cards and forms</a></li>
+  <li><a href="https://badssl.com/">badssl.com</a></li>
+  <li><a href="https://mdn.github.io/dom-examples/web-share/">MDN Web share test</a></li>
+</ul>
+
+{% endblock %}

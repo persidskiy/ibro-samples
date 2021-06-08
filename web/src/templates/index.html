@@ -3,7 +3,8 @@
 
 
 {% block content %}
-{% set sections = ['Redirects', 'Slow pages', 'Forms', 'Navigation API', 'New tab navigations', 'JS API', 'File Downloads'] %}
+{% set sections = ['Redirects', 'Slow pages', 'Forms', 'Navigation API', 'New tab navigations', 'JS API', 'File
+Downloads'] %}
 
 {%macro section_header(idx) %}
 <h5 id="{{ get_fragment(sections[idx]) }}" class="card-title">{{sections[idx]}}</h5>
@@ -12,225 +13,226 @@
 
 
 <div class="row">
-    <div class="col-sm">
-        <ol class="list-unstyled">
-            {% for section in sections %}
-            <li><a href="#{{ get_fragment(section) }}">{{section}}</a></li>
-            {% endfor %}
+  <div class="col-sm">
+    <ol class="list-unstyled">
+      {% for section in sections %}
+      <li><a href="#{{ get_fragment(section) }}">{{section}}</a></li>
+      {% endfor %}
+    </ol>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class=col-sm>
+    <div class="card mb-4">
+      <div class="card-body">
+        {{ section_header(0) }}
+        <ol>
+          <li><a href="{{ url_for('redir.simple') }}">Simple 302 Redirect</a></li>
+          <li><a href="{{ url_for('redir.two_http') }}">Two 302 Redirects</a></li>
+          <li><a href="{{ url_for('redir.client_js') }}">Client Side JS Redirect</a></li>
+          <li><a href="{{ url_for('redir.client_meta') }}">Client Side Meta tag Redirect</a></li>
+          <li><a href="{{ url_for('redir.complex_1') }}">HTTP redirect -> JS Redirect -> HTTP redirect</a></li>
         </ol>
+      </div>
     </div>
-</div>
+    <div class="card mb-4">
+      <div class="card-body">
+        {{ section_header(2) }}
 
-
-<div class="row">
-    <div class=col-sm>
-        <div class="card mb-4">
-            <div class="card-body">
-                {{ section_header(0) }}
-                <ol>
-                    <li><a href="{{ url_for('redir.simple') }}">Simple 302 Redirect</a></li>
-                    <li><a href="{{ url_for('redir.two_http') }}">Two 302 Redirects</a></li>
-                    <li><a href="{{ url_for('redir.client_js') }}">Client Side JS Redirect</a></li>
-                    <li><a href="{{ url_for('redir.client_meta') }}">Client Side Meta tag Redirect</a></li>
-                    <li><a href="{{ url_for('redir.complex_1') }}">HTTP redirect -> JS Redirect -> HTTP redirect</a></li>
-                </ol>
-            </div>
-        </div>
-        <div class="card mb-4">
-            <div class="card-body">
-                {{ section_header(2) }}
-
-                <form class="mb-1" action="{{ url_for('post_form' )}}" method="post">
-                    <button class="btn btn-sm btn-success" type="submit">Send POST to /post-form</button>
-                </form>
-                <form action="https://asdfasdfasdfasdf.com" method="post">
-                    <button class="btn btn-sm btn-danger" type="submit">Send POST to unknown page</button>
-                </form>
-            </div>
-        </div>
+        <form class="mb-1" action="{{ url_for('post_form' )}}" method="post">
+          <button class="btn btn-sm btn-success" type="submit">Send POST to /post-form</button>
+        </form>
+        <form action="https://asdfasdfasdfasdf.com" method="post">
+          <button class="btn btn-sm btn-danger" type="submit">Send POST to unknown page</button>
+        </form>
+      </div>
     </div>
+  </div>
 
-    <div class=col-sm>
-        <div class="card mb-4">
-            <div class="card-body">
-                {{ section_header(1) }}
+  <div class=col-sm>
+    <div class="card mb-4">
+      <div class="card-body">
+        {{ section_header(1) }}
 
-                <ol>
-                    <li><a href="{{ url_for('slow_provision') }}">Slow provision</a> <br /><span
-                            class="text-muted">Sleeps 20 sec on
-                            server. Navigation won't be commited until it wake up.</span></li>
-                    <li><a href="{{ url_for('slow_client') }}">Slow client</a> <br /> <span class="text-muted">Sleeps 20
-                            sec on
-                            client (will hung up your browser) after navigation commit.</span></li>
-                    <li><a href="{{ url_for('replace_state') }}">Replace state before finish loading</a> <br />
-                      <span class="text-muted">Calls same-document navigation before finish loading</span></li>
-                </ol>
-            </div>
-        </div>
+        <ol>
+          <li><a href="{{ url_for('slow_provision') }}">Slow provision</a> <br /><span class="text-muted">Sleeps 20 sec
+              on
+              server. Navigation won't be commited until it wake up.</span></li>
+          <li><a href="{{ url_for('slow_client') }}">Slow client</a> <br /> <span class="text-muted">Sleeps 20
+              sec on
+              client (will hung up your browser) after navigation commit.</span></li>
+          <li><a href="{{ url_for('replace_state') }}">Replace state before finish loading</a> <br />
+            <span class="text-muted">Calls same-document navigation before finish loading</span>
+          </li>
+        </ol>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="row">
-    <div class=col-sm>
-        <div class="card mb-4">
-            <div class="card-body">
-                {{ section_header(3) }}
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Basic navigation</h6>
-                        <code>window.history.</code>
-                        <button class="btn btn-primary btn-sm" onclick="window.history.back()">back()</button>
-                        <button class="btn btn-primary btn-sm"
-                            onclick="window.history.forward()">forward()</button>
-                        <button class="btn btn-primary btn-sm" onclick="window.history.go()">go()</button>
-                        <code></code>
-                        <div class="mb-1"></div>
+  <div class=col-sm>
+    <div class="card mb-4">
+      <div class="card-body">
+        {{ section_header(3) }}
+        <div class="row">
+          <div class="col-sm">
+            <h6>Basic navigation</h6>
+            <code>window.history.</code>
+            <button class="btn btn-primary btn-sm" onclick="window.history.back()">back()</button>
+            <button class="btn btn-primary btn-sm" onclick="window.history.forward()">forward()</button>
+            <button class="btn btn-primary btn-sm" onclick="window.history.go()">go()</button>
+            <code></code>
+            <div class="mb-1"></div>
 
-                        <h6>History api</h6>
-                        <code>window.history.pushState(</code>
-                        <button class="btn btn-primary btn-sm" onclick="onPush('foo')">'foo'</button>
-                        <button class="btn btn-primary btn-sm" onclick="onPush('bar')">'bar'</button>
-                        <button class="btn btn-primary btn-sm" onclick="onPush('baz')">'baz'</button>
-                        <code>)</code>
-                        <div class="mb-1"></div>
+            <h6>History api</h6>
+            <code>window.history.pushState(</code>
+            <button class="btn btn-primary btn-sm" onclick="onPush('foo')">'foo'</button>
+            <button class="btn btn-primary btn-sm" onclick="onPush('bar')">'bar'</button>
+            <button class="btn btn-primary btn-sm" onclick="onPush('baz')">'baz'</button>
+            <code>)</code>
+            <div class="mb-1"></div>
 
-                        <code>window.history.replaceState(</code>
-                        <button class="btn btn-primary btn-sm" onclick="onReplace('foo')">'foo'</button>
-                        <button class="btn btn-primary btn-sm" onclick="onReplace('bar')">'bar'</button>
-                        <button class="btn btn-primary btn-sm" onclick="onReplace('baz')">'baz'</button>
-                        <code>)</code>
-                        <div class="mb-1"></div>
+            <code>window.history.replaceState(</code>
+            <button class="btn btn-primary btn-sm" onclick="onReplace('foo')">'foo'</button>
+            <button class="btn btn-primary btn-sm" onclick="onReplace('bar')">'bar'</button>
+            <button class="btn btn-primary btn-sm" onclick="onReplace('baz')">'baz'</button>
+            <code>)</code>
+            <div class="mb-1"></div>
 
-                        <code>window.history.state:  <span id="state-container"></span></code>
-                    </div>
-                    <div class="col-sm">
-                        <h6>Anchor navigations</h6>
-                        <ol>
-                            <li><a href="#fragment-1">#fragment-1</a></li>
-                            <li><a href="#fragment-2">#fragment-2</a></li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
+            <code>window.history.state:  <span id="state-container"></span></code>
+          </div>
+          <div class="col-sm">
+            <h6>Anchor navigations</h6>
+            <ol>
+              <li><a href="#fragment-1">#fragment-1</a></li>
+              <li><a href="#fragment-2">#fragment-2</a></li>
+            </ol>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="row">
-    <div class=col-sm>
-        <div class="card mb-4">
-            <div class="card-body">
-                {{ section_header(4) }}
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Links <code> {{ ' <a target="_blank" href="...">' }}</code>:</h6>
-                        <ol>
-                            <li><a target="_blank" href="https://yandex.ru">yandex.ru</a></li>
-                            <li><a target="_blank" rel="noopener noreferrer" href="https://yandex.ru">yandex.ru</a>
-                                <code>rel="noopener noreferrer"</code></li>
-                            <li><a target="_blank" href="/">/ (this page)</a></li>
-                            <li><a target="_blank" rel="noopener noreferrer" href="/">/ (this
-                                    page)</a><code> rel="noopener noreferrer"</code> </li>
-                        </ol>
-                        <h6>Forms <code> {{ ' <form target="_blank">' }}</code>:</h6>
-                        <form class="mb-1" target="_blank" action="/">
-                            <button class="btn btn-success btn-sm" type=submit>/ (this page)</button>
-                        </form>
-                        <form class="mb-2" target="_blank" rel="noopener noreferrer" action="/">
-                            <button class="btn btn-success btn-sm" type=submit>/ (this page)</button>
-                            <code>rel="noopener noreferrer"</code>
-                        </form>
+  <div class=col-sm>
+    <div class="card mb-4">
+      <div class="card-body">
+        {{ section_header(4) }}
+        <div class="row">
+          <div class="col-sm">
+            <h6>Links <code> {{ ' <a target="_blank" href="...">' }}</code>:</h6>
+            <ol>
+              <li><a target="_blank" href="https://yandex.ru">yandex.ru</a></li>
+              <li><a target="_blank" rel="noopener noreferrer" href="https://yandex.ru">yandex.ru</a>
+                <code>rel="noopener noreferrer"</code>
+              </li>
+              <li><a target="_blank" href="/">/ (this page)</a></li>
+              <li><a target="_blank" rel="noopener noreferrer" href="/">/ (this
+                  page)</a><code> rel="noopener noreferrer"</code> </li>
+            </ol>
+            <h6>Forms <code> {{ ' <form target="_blank">' }}</code>:</h6>
+            <form class="mb-1" target="_blank" action="/">
+              <button class="btn btn-success btn-sm" type=submit>/ (this page)</button>
+            </form>
+            <form class="mb-2" target="_blank" rel="noopener noreferrer" action="/">
+              <button class="btn btn-success btn-sm" type=submit>/ (this page)</button>
+              <code>rel="noopener noreferrer"</code>
+            </form>
 
-                        <h6>JS api</h6>
-                        <button class="btn btn-primary btn-sm"
-                            onclick="window.open('/')">window.open('/')</button>
-                        <button class="btn btn-secondary btn-sm"
-                            onclick="window.close()">window.close()</button>
-                    </div>
-                </div>
-            </div>
+            <h6>JS api</h6>
+            <button class="btn btn-primary btn-sm" onclick="window.open('/')">window.open('/')</button>
+            <button class="btn btn-secondary btn-sm" onclick="window.close()">window.close()</button>
+            <button class="btn btn-primary btn-sm" onclick="window.open()">window.open()</button>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="row">
-    <div class=col-sm>
-        <div class="card mb-4">
-            <div class="card-body">
-                {{ section_header(5) }}
-                <div class="mb-1">
-                    <button class="btn btn-primary btn-sm"
-                        onclick="window.alert('Hello')">window.alert('Hello')</button>
-                </div>
-                <div class="mb-1">
-                    <button class="btn btn-primary btn-sm"
-                        onclick="$('prompt-out-1').innerHTML = escapeHtml(String(window.prompt('World')))">window.prompt('World')</button>
-                    <span id="prompt-out-1"></span>
-                </div>
-                <div class="mb-1">
-                    <button class="btn btn-primary btn-sm"
-                        onclick="$('prompt-out-2').innerHTML = escapeHtml(String(window.prompt('World', 'default')))">window.prompt('World',
-                        'default')</button>
-                    <span id="prompt-out-2"></span>
-                </div>
-                <div class="mb-1">
-                    <button class="btn btn-primary btn-sm"
-                        onclick="$('prompt-out-3').innerHTML = window.confirm('Okay?')">window.confirm('Okay?')</button>
-                    <span id="prompt-out-3"></span>
-                </div>
-                <div class="mb-1">
-                    <button class="btn btn-primary btn-sm" onclick="window.print()">window.print()</button>
-                </div>
-            </div>
+  <div class=col-sm>
+    <div class="card mb-4">
+      <div class="card-body">
+        {{ section_header(5) }}
+        <div class="mb-1">
+          <button class="btn btn-primary btn-sm" onclick="window.alert('Hello')">window.alert('Hello')</button>
         </div>
-    </div>
-    <div class=col-sm>
-        <div class="card mb-4">
-            <div class="card-body">
-                {{ section_header(6) }}
-                  <h6>Supported in WKWebView</h6>
-                  <ul class ="mb-2">
-                      <li>{{ static_file_url('PDFdoc.pdf') }}</li>
-                      <li>{{ static_file_url('Presentation.pptx') }}</li>
-                      <li>{{ static_file_url('Word.docx') }}</li>
-                      <li>{{ static_file_url('Excel.xlsx') }}</li>
-                    <li>
-                      <a href="{{url_for('file_download.download', filename='PDFdoc.pdf')}}">PDFdoc.pdf</a> <span class="text-muted">Downloads only when cookie is set.</span>
-                    </li>
-
-                  </ul>
-                  <h6>Not supported</h6>
-                  <ul class="mb-2">
-                    <li>
-                      <a href="{{url_for('static', filename='files/dummy10.dmg')}}">dummy10.dmg</a>
-                    </li>
-                    <li>
-                      <a href="{{url_for('file_download.download', filename='dummy15.dmg')}}">dummy15.dmg</a> <span class="text-muted">Downloads only when cookie is set.</span>
-                    </li>
-                  </ul>
-                  <div class="mb-1 mt-4">
-                    {% if download_cookie_is_set %}
-                    <form action="{{url_for('file_download.unset_cookie')}}" method="post">
-                      <button class="btn btn-sm btn-danger" type="submit">Unset Cookie</button>
-                    </form>
-                    {% else %}
-                    <form action="{{url_for('file_download.set_cookie')}}" method="post">
-                      <button class="btn btn-sm btn-primary" type="submit">Set Cookie</button>
-                    </form>
-                    {% endif %}
-                  </div>
-
-            </div>
+        <div class="mb-1">
+          <button class="btn btn-primary btn-sm"
+            onclick="$('prompt-out-1').innerHTML = escapeHtml(String(window.prompt('World')))">window.prompt('World')</button>
+          <span id="prompt-out-1"></span>
         </div>
+        <div class="mb-1">
+          <button class="btn btn-primary btn-sm"
+            onclick="$('prompt-out-2').innerHTML = escapeHtml(String(window.prompt('World', 'default')))">window.prompt('World',
+            'default')</button>
+          <span id="prompt-out-2"></span>
+        </div>
+        <div class="mb-1">
+          <button class="btn btn-primary btn-sm"
+            onclick="$('prompt-out-3').innerHTML = window.confirm('Okay?')">window.confirm('Okay?')</button>
+          <span id="prompt-out-3"></span>
+        </div>
+        <div class="mb-1">
+          <button class="btn btn-primary btn-sm" onclick="window.print()">window.print()</button>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class=col-sm>
+    <div class="card mb-4">
+      <div class="card-body">
+        {{ section_header(6) }}
+        <h6>Supported in WKWebView</h6>
+        <ul class="mb-2">
+          <li>{{ static_file_url('PDFdoc.pdf') }}</li>
+          <li>{{ static_file_url('Presentation.pptx') }}</li>
+          <li>{{ static_file_url('Word.docx') }}</li>
+          <li>{{ static_file_url('Excel.xlsx') }}</li>
+          <li>
+            <a href="{{url_for('file_download.download', filename='PDFdoc.pdf')}}">PDFdoc.pdf</a> <span
+              class="text-muted">Downloads only when cookie is set.</span>
+          </li>
+
+        </ul>
+        <h6>Not supported</h6>
+        <ul class="mb-2">
+          <li>
+            <a href="{{url_for('static', filename='files/dummy10.dmg')}}">dummy10.dmg</a>
+          </li>
+          <li>
+            <a href="{{url_for('file_download.download', filename='dummy15.dmg')}}">dummy15.dmg</a> <span
+              class="text-muted">Downloads only when cookie is set.</span>
+          </li>
+        </ul>
+        <div class="mb-1 mt-4">
+          {% if download_cookie_is_set %}
+          <form action="{{url_for('file_download.unset_cookie')}}" method="post">
+            <button class="btn btn-sm btn-danger" type="submit">Unset Cookie</button>
+          </form>
+          {% else %}
+          <form action="{{url_for('file_download.set_cookie')}}" method="post">
+            <button class="btn btn-sm btn-primary" type="submit">Set Cookie</button>
+          </form>
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+  </div>
 </div>
 
 
 <p id="fragment-1" class="anchor-paragraph">
-    Fragment 1.
+  Fragment 1.
 </p>
 <p id="fragment-2" class="anchor-paragraph">
-    Fragment 2.
+  Fragment 2.
 </p>
 
 
