@@ -1,0 +1,22 @@
+from flask import Blueprint, redirect, render_template, url_for, request
+
+bp = Blueprint("pages", __name__, url_prefix="/pages")
+
+
+@bp.route("/")
+def pages():
+    return render_template("pages/index.html", page_title="Testing Pages", menu="pages")
+
+
+@bp.route("/readability")
+def readability():
+    return render_template(
+        "pages/readability.html", page_title="Readability Markup testing", menu="pages",
+    )
+
+
+@bp.route("/youtube")
+def youtube():
+    return render_template(
+        "pages/youtube.html", page_title="YouTube embeds", menu="pages",
+    )

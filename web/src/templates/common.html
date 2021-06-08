@@ -2,141 +2,140 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{page_title}}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-    <script>
-        function escapeHtml(unsafe) {
-            return unsafe
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
-        function $(id) {
-            return document.getElementById(id)
-        }
-        var onStateChange = function () {
-            $('state-container').innerHTML = window.history.state;
-        }
-        function onPush(state) {
-            window.history.pushState(state, '', '/' + state);
-            onStateChange(state);
-        }
-        function onReplace(state) {
-            window.history.replaceState(state, '', '/' + state);
-            onStateChange(state);
-        }
-        window.onpopstate = onStateChange;
-    </script>
-    <style>
-        .example {
-            margin: 15px 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{page_title}}</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+    integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  <script>
+    function escapeHtml(unsafe) {
+      return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+    function $(id) {
+      return document.getElementById(id)
+    }
+    var onStateChange = function () {
+      $('state-container').innerHTML = window.history.state;
+    }
+    function onPush(state) {
+      window.history.pushState(state, '', '/' + state);
+      onStateChange(state);
+    }
+    function onReplace(state) {
+      window.history.replaceState(state, '', '/' + state);
+      onStateChange(state);
+    }
+    window.onpopstate = onStateChange;
+  </script>
+  <style>
+    .example {
+      margin: 15px 0;
+    }
 
-        .anchor-paragraph {
-            margin-top: 1500px;
-        }
+    .anchor-paragraph {
+      margin-top: 1500px;
+    }
 
-        .nav-scroller {
-            position: relative;
-            z-index: 2;
-            height: 3rem;
-            overflow-y: hidden;
-        }
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 3rem;
+      overflow-y: hidden;
+    }
 
-        .nav-scroller .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            color: rgba(255, 255, 255, .75);
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-            justify-content: space-between;
-        }
+    .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      color: rgba(255, 255, 255, .75);
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      justify-content: space-between;
+    }
 
-        .nav-underline .nav-link {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-            font-size: 1rem;
-            line-height: 1rem;
-            color: #6c757d;
-        }
+    .nav-underline .nav-link {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      font-size: 1rem;
+      line-height: 1rem;
+      color: #6c757d;
+    }
 
-        .nav-underline .nav-link:hover {
-            color: #007bff;
-        }
+    .nav-underline .nav-link:hover {
+      color: #007bff;
+    }
 
-        .nav-underline .active {
-            font-weight: 500;
-            color: #343a40;
-        }
+    .nav-underline .active {
+      font-weight: 500;
+      color: #343a40;
+    }
 
-        .app-nav {
-            margin-bottom: 15px;
-        }
+    .app-nav {
+      margin-bottom: 15px;
+    }
 
-        .app-version-badge {
-            align-self: center;
+    .app-version-badge {
+      align-self: center;
 
-        }
+    }
 
-        a.app-version-badge:hover {
-            color: inherit;
-        }
+    a.app-version-badge:hover {
+      color: inherit;
+    }
 
-        .app-version-badge {
-            margin-left: 1rem;
-            margin-right: 1rem;
-        }
+    .app-version-badge {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
 
-        .app-brand {
-            font-size: 1.3rem !important;
-        }
-    </style>
+    .app-brand {
+      font-size: 1.3rem !important;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="bg-light app-nav">
-        <div class="container-xl px-0">
+  <div class="bg-light app-nav">
+    <div class="container-xl px-0">
 
-            <div class="nav-scroller">
-                <nav class="nav nav-underline">
-                    <div class="d-flex">
-                        <a class="nav-link app-brand  {%if menu == 'home' %}active{% endif %}" aria-current="page"
-                            href="{{ url_for('home') }}">IBRO Samples</a>
-                        <a class="nav-link  {%if menu == 'urls' %}active{% endif %}"
-                            href="{{ url_for('custom_urls') }}">Custom URLs</a>
-                        <a class="nav-link {%if menu == 'forms' %}active{% endif %}"
-                            href="{{ url_for('forms.signin_username') }}">Forms</a>
-                        <a class="nav-link {%if menu == 'readability' %}active{% endif %}"
-                            href="{{ url_for('readability') }}">Readability</a>
-                    </div>
-                    <div class="d-flex">
-                        <a class="nav-link {%if menu == 'other' %}active{% endif %}" href="{{ url_for('other') }}">Other pages</a>
-                        {% if not app_version or app_version == 'docker-dev' %}
-                        <span class="badge bg-info app-version-badge">rev: {{app_version}}</span>
-                        {% else %}
-                        <a href="https://github.com/persidskiy/ibro-samples/commit/{{app_version}}"
-                            class="badge bg-info app-version-badge text-decoration-none">rev:
-                            {{app_version|truncate(7, end='')}}</a>
-                        {% endif %}
-                    </div>
+      <div class="nav-scroller">
+        <nav class="nav nav-underline">
+          <div class="d-flex">
+            <a class="nav-link app-brand  {%if menu == 'home' %}active{% endif %}" aria-current="page"
+              href="{{ url_for('home') }}">IBRO Samples</a>
+            <a class="nav-link  {%if menu == 'urls' %}active{% endif %}" href="{{ url_for('custom_urls') }}">Custom
+              URLs</a>
+            <a class="nav-link {%if menu == 'forms' %}active{% endif %}"
+              href="{{ url_for('forms.signin_username') }}">Forms</a>
+            <a class="nav-link {%if menu == 'pages' %}active{% endif %}"
+              href="{{ url_for('pages.pages') }}">Pages</a>
+          </div>
+          <div class="d-flex">
+            {% if not app_version or app_version == 'docker-dev' %}
+            <span class="badge bg-info app-version-badge">rev: {{app_version}}</span>
+            {% else %}
+            <a href="https://github.com/persidskiy/ibro-samples/commit/{{app_version}}"
+              class="badge bg-info app-version-badge text-decoration-none">rev:
+              {{app_version|truncate(7, end='')}}</a>
+            {% endif %}
+          </div>
 
-                </nav>
-            </div>
-        </div>
+        </nav>
+      </div>
     </div>
-    <main role="main" class="container-xl">
-        {% block content %}{%endblock%}
-    </main>
+  </div>
+  <main role="main" class="container-xl">
+    {% block content %}{%endblock%}
+  </main>
 </body>
 
 </html>
