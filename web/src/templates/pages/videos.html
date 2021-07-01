@@ -1,0 +1,72 @@
+{% extends 'common.html' %}
+{% block content %}
+
+<h1>Videos</h1>
+
+<p>Autoplay(muted) video</p>
+<div class="mb-5">
+  <div class="embed-responsive embed-responsive-16by9 mb-3" style="max-width: 700px;">
+    <video controls autoplay muted class="main-video"
+      src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"></video>
+  </div>
+  <button class="btn btn-primary btn-sm change-src">
+    Randomly change src
+  </button>
+</div>
+
+<p>Add dynamic videos to the page</p>
+<div class="video-container mb-3">
+
+</div>
+
+<div class="mb-3">
+  <button class="btn btn-primary btn-sm add-video">Add Video</button>
+  <button class="btn btn-primary btn-sm add-video-autoplay">Add Video with autoplay</button>
+</div>
+
+<script>
+  const videoSamples = new Set([
+    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
+    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+  ]);
+
+  function appendVideo(src, autoplay) {
+    const container = document.querySelector('.video-container');
+    if (!container) return;
+
+    const attrs = autoplay ? 'autoplay' : '';
+
+    container.innerHTML += `
+    <div class="mb-3">
+      <div class="embed-responsive embed-responsive-16by9 mb-3" style="max-width: 700px;">
+        <video controls ${attrs} src="${src}"></video>
+      </div>
+      <button class="btn btn-danger btn-sm remove-video">Remove</button>
+    </div>
+    `;
+  }
+
+  document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('add-video')) {
+      appendVideo('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4', false);
+    } else if (e.target.classList.contains('add-video-autoplay')) {
+      appendVideo('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4', true);
+    } else if (e.target.classList.contains('remove-video')) {
+      e.target.parentNode.remove();
+    } else if (e.target.classList.contains('change-src')) {
+      let mainVideo = document.querySelector('.main-video');
+      if (!mainVideo) return;
+
+      let candidates = new Set(videoSamples);
+      candidates.delete(mainVideo.src);
+      let candidatesArray = Array.from(candidates);
+      mainVideo.src = candidatesArray[Math.floor(Math.random() * candidatesArray.length)];
+    }
+  });
+</script>
+
+
+{% endblock %}
