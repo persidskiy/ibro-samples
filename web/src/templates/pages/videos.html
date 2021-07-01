@@ -6,7 +6,7 @@
 <p>Autoplay(muted) video</p>
 <div class="mb-5">
   <div class="embed-responsive embed-responsive-16by9 mb-3" style="max-width: 700px;">
-    <video controls autoplay muted class="main-video"
+    <video controls autoplay muted playsinline class="main-video"
       src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"></video>
   </div>
   <button class="btn btn-primary btn-sm change-src">
@@ -42,7 +42,7 @@
     container.innerHTML += `
     <div class="mb-3">
       <div class="embed-responsive embed-responsive-16by9 mb-3" style="max-width: 700px;">
-        <video controls ${attrs} src="${src}"></video>
+        <video controls ${attrs} playsinline src="${src}"></video>
       </div>
       <button class="btn btn-danger btn-sm remove-video">Remove</button>
     </div>
