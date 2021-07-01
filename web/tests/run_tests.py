@@ -16,6 +16,7 @@ class BasicTests(unittest.TestCase):
             "/pages/",
             "/pages/readability",
             "/pages/youtube",
+            "/pages/videos",
             "/urls",
             "/slow-client-loading",
             "/replace-state",

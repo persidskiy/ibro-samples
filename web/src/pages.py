@@ -20,3 +20,9 @@ def youtube():
     return render_template(
         "pages/youtube.html", page_title="YouTube embeds", menu="pages",
     )
+
+@bp.route("/videos")
+def videos():
+    return render_template(
+        "pages/videos.html", page_title="Videos", menu="pages",
+    )
