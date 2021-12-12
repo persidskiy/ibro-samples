@@ -26,3 +26,10 @@ def videos():
     return render_template(
         "pages/videos.html", page_title="Videos", menu="pages",
     )
+
+@bp.route("/dark-mode")
+def dark_mode():
+    return render_template(
+        "pages/dark_mode.html", page_title="Dark Mode", menu="pages",
+    )
+
