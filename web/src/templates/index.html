@@ -235,7 +235,7 @@ Downloads'] %}
           <li>{{ static_file_url('Excel.xlsx') }}</li>
           <li>
             <a href="{{url_for('file_download.download', filename='PDFdoc.pdf')}}">PDFdoc.pdf</a> <span
-              class="text-muted">Downloads only when cookie is set.</span>
+              class="text-muted">Requires cookie.</span>
           </li>
 
         </ul>
@@ -246,7 +246,62 @@ Downloads'] %}
           </li>
           <li>
             <a href="{{url_for('file_download.download', filename='dummy15.dmg')}}">dummy15.dmg</a> <span
-              class="text-muted">Downloads only when cookie is set.</span>
+              class="text-muted">Requires cookie.</span>
+          </li>
+        </ul>
+        <h6>Others</h6>
+        <script>
+          function download(url) {
+            let anchor = document.createElement("a");
+            document.body.appendChild(anchor);
+
+            let headers = new Headers();
+            return fetch(url, { headers })
+                .then(response => {
+                    if (!response.ok) {
+                      throw new Error('Fail downloading object');
+                    }
+                    return response.blob();
+                  }).then(blob => {
+                    let objectUrl = window.URL.createObjectURL(blob);
+
+                    anchor.href = objectUrl;
+                    anchor.download = 'some-file.jpg';
+                    anchor.click();
+                    document.body.removeChild(anchor)
+
+                    window.URL.revokeObjectURL(objectUrl);
+                })
+          }
+          function download_3_jpg() {
+            download("{{url_for('static', filename='images/3.jpg')}}")
+          }
+
+          function fetch_download_cookie() {
+            download("{{url_for('file_download.download', filename='3.jpg')}}")
+            .then(function() {
+              let out = $('cookie-download-output');
+              out.innerText = 'Requires cookie.';
+              out.classList.remove('text-danger');
+              out.classList.add('text-muted');
+            })
+            .catch(err => {
+              let out = $('cookie-download-output');
+              out.innerText = err.message;
+              out.classList.add('text-danger');
+              out.classList.remove('text-muted');
+            })
+          }
+        </script>
+        <ul class="mb-2">
+          <li class="mb-1">
+            <a download href={{url_for('static', filename='files/3.jpg')}}">3.jpg</a>
+          </li>
+          <li class="mb-1">
+            <button class="btn btn-primary btn-sm", onclick=download("{{url_for('static', filename='files/3.jpg')}}")>Download using Object URL</button>
+          </li>
+          <li class="mb-1">
+            <button class="btn btn-primary btn-sm", onclick="fetch_download_cookie()">Download using Object URL</button> <span id="cookie-download-output" class="text-muted">Requires cookie.</span>
           </li>
         </ul>
         <div class="mb-1 mt-4">
