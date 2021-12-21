@@ -249,7 +249,7 @@ Downloads'] %}
               class="text-muted">Requires cookie.</span>
           </li>
         </ul>
-        <h6>Others</h6>
+
         <script>
           function download(url) {
             let anchor = document.createElement("a");
@@ -290,15 +290,28 @@ Downloads'] %}
             })
           }
         </script>
+        <h6>Tag Download</h6>
         <ul class="mb-2">
+          <li>
+            <a download="3.jpg" href="{{url_for('static', filename='images/3.jpg')}}">3.jpg</a>
+          </li>
+          <li>
+            <a download="3.jpg" href="{{url_for('file_download.download', filename='3.jpg')}}">3.jpg</a> <span class="text-muted">requires cookie.</span>
+          </li>
+          <li>
+            <a download="PDFdoc.pdf" href="{{url_for('static', filename='files/PDFdoc.pdf')}}">PDFdoc.pdf</a>
+          </li>
+          <li>
+            <a download="PDFdoc.pdf" href="{{url_for('file_download.download', filename='PDFdoc.pdf')}}">PDFdoc.pdf</a> <span class="text-muted">requires cookie.</span>
+          </li>
+        </ul>
+        <h6>Object URL</h6>
+        <ul>
           <li class="mb-1">
-            <a download href="{{url_for('static', filename='images/3.jpg')}}">3.jpg</a>
+            <button class="btn btn-primary btn-sm", onclick=download("{{url_for('static', filename='images/3.jpg')}}")>Download</button>
           </li>
           <li class="mb-1">
-            <button class="btn btn-primary btn-sm", onclick=download("{{url_for('static', filename='images/3.jpg')}}")>Download using Object URL</button>
-          </li>
-          <li class="mb-1">
-            <button class="btn btn-primary btn-sm", onclick="fetch_download_cookie()">Download using Object URL</button> <span id="cookie-download-output" class="text-muted">Requires cookie.</span>
+            <button class="btn btn-primary btn-sm", onclick="fetch_download_cookie()">Download</button> <span id="cookie-download-output" class="text-muted">Requires cookie.</span>
           </li>
         </ul>
         <div class="mb-1 mt-4">
