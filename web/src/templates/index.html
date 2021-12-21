@@ -273,9 +273,6 @@ Downloads'] %}
                     window.URL.revokeObjectURL(objectUrl);
                 })
           }
-          function download_3_jpg() {
-            download("{{url_for('static', filename='images/3.jpg')}}")
-          }
 
           function fetch_download_cookie() {
             download("{{url_for('file_download.download', filename='3.jpg')}}")
@@ -295,10 +292,10 @@ Downloads'] %}
         </script>
         <ul class="mb-2">
           <li class="mb-1">
-            <a download href={{url_for('static', filename='files/3.jpg')}}">3.jpg</a>
+            <a download href="{{url_for('static', filename='images/3.jpg')}}">3.jpg</a>
           </li>
           <li class="mb-1">
-            <button class="btn btn-primary btn-sm", onclick=download("{{url_for('static', filename='files/3.jpg')}}")>Download using Object URL</button>
+            <button class="btn btn-primary btn-sm", onclick=download("{{url_for('static', filename='images/3.jpg')}}")>Download using Object URL</button>
           </li>
           <li class="mb-1">
             <button class="btn btn-primary btn-sm", onclick="fetch_download_cookie()">Download using Object URL</button> <span id="cookie-download-output" class="text-muted">Requires cookie.</span>
