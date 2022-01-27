@@ -3,8 +3,8 @@
 
 
 {% block content %}
-{% set sections = ['Redirects', 'Slow pages', 'Forms', 'Navigation API', 'New tab navigations', 'Open many new tabs', 'JS API', 'File
-Downloads'] %}
+{% set sections = ['Redirects', 'Slow pages', 'Forms', 'Navigation API',
+'New tab navigations', 'Open many new tabs', 'JS API', 'Specific Navs', 'File Downloads'] %}
 
 {%macro section_header(idx) %}
 <h5 id="{{ get_fragment(sections[idx]) }}" class="card-title">{{sections[idx]}}</h5>
@@ -222,11 +222,20 @@ Downloads'] %}
         </div>
       </div>
     </div>
+    <div class="card mb-4">
+      <div class="card-body">
+        {{ section_header(7) }}
+        <ul>
+          <li><a href="{{url_for('error_500')}}">500 Error</a></li>
+          <li><a href="{{url_for('basic_auth')}}">Basic Auth</a> (<a class="text-danger" href="{{url_for('basic_auth_logout')}}">Logout</a>)</li>
+        </ul>
+      </div>
+    </div>
   </div>
   <div class=col-sm>
     <div class="card mb-4">
       <div class="card-body">
-        {{ section_header(7) }}
+        {{ section_header(8) }}
         <h6>Supported in WKWebView</h6>
         <ul class="mb-2">
           <li>{{ static_file_url('PDFdoc.pdf') }}</li>
