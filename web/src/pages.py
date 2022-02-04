@@ -33,3 +33,10 @@ def dark_mode():
         "pages/dark_mode.html", page_title="Dark Mode", menu="pages",
     )
 
+
+@bp.route("/omni-bug")
+def omni_bug():
+    return render_template(
+        "pages/omni_bug.html", page_title="Omni Bug", menu="pages",
+    )
+

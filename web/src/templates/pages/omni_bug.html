@@ -1,0 +1,88 @@
+{% extends 'common.html' %}
+{% block content %}
+<style>
+  .omni-bug-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: bisque;
+    padding: 20px;
+    z-index: 9999;
+    overflow: scroll;
+  }
+</style>
+<h2>Hello world</h2>
+
+
+<p><button id="open-modal" class="btn btn-primary btn-sm">Open modal</button></p>
+<script>
+  document.getElementById("open-modal").addEventListener("click", (ev) => {
+    var popupNode = document.createElement("div");
+    var content = document.getElementById("content").cloneNode(true);
+
+    var hideButton = document.createElement('button');
+    hideButton.innerText = "Hide";
+    hideButton.classList.add("btn", "btn-primary", "btn-sm");
+    hideButton.addEventListener("click", (ev) => {
+      document.body.removeChild(popupNode);
+    });
+
+    popupNode.appendChild(hideButton);
+    popupNode.appendChild(content);
+
+    popupNode.classList.add("omni-bug-popup");
+    document.body.appendChild(popupNode);
+  });
+</script>
+
+<div id="content">
+  <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+    magna aliqua. Gravida dictum fusce ut placerat orci nulla. Semper eget duis at tellus at urna condimentum mattis
+    pellentesque. Faucibus nisl tincidunt eget nullam non nisi est sit. Nunc mattis enim ut tellus elementum sagittis.
+    Posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus. Integer quis auctor elit sed vulputate mi
+    sit amet mauris. Pellentesque sit amet porttitor eget dolor morbi. Enim eu turpis egestas pretium aenean pharetra
+    magna ac placerat. Etiam tempor orci eu lobortis elementum nibh. Amet dictum sit amet justo donec enim diam
+    vulputate ut. Viverra nibh cras pulvinar mattis nunc sed blandit libero. Turpis egestas maecenas pharetra convallis
+    posuere morbi. Eu sem integer vitae justo eget. Sed risus ultricies tristique nulla aliquet enim. Praesent elementum
+    facilisis leo vel fringilla est ullamcorper eget nulla. Ullamcorper morbi tincidunt ornare massa. Elit eget gravida
+    cum sociis natoque penatibus. Magna sit amet purus gravida quis blandit turpis cursus in. Mattis molestie a iaculis
+    at erat.</p>
+
+  <p> Maecenas volutpat blandit aliquam etiam erat velit scelerisque. Ullamcorper morbi tincidunt ornare massa eget
+    egestas purus. Tortor dignissim convallis aenean et tortor at risus viverra. Ipsum nunc aliquet bibendum enim
+    facilisis gravida neque convallis a. Feugiat nisl pretium fusce id. Sagittis id consectetur purus ut faucibus
+    pulvinar elementum integer enim. Lacus viverra vitae congue eu consequat. Tortor aliquam nulla facilisi cras
+    fermentum odio. Sed id semper risus in hendrerit gravida rutrum quisque non. Turpis egestas sed tempus urna et
+    pharetra pharetra. Enim neque volutpat ac tincidunt vitae semper quis lectus nulla. Senectus et netus et malesuada
+    fames ac. Interdum velit euismod in pellentesque. Arcu ac tortor dignissim convallis. Semper quis lectus nulla at
+    volutpat diam. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Ipsum nunc aliquet bibendum enim
+    facilisis gravida neque convallis a. Consequat ac felis donec et. Lacus suspendisse faucibus interdum posuere.
+    Aliquet nibh praesent tristique magna sit amet purus gravida.</p>
+
+  <p> Arcu felis bibendum ut tristique et egestas quis. Interdum posuere lorem ipsum dolor sit amet consectetur
+    adipiscing elit. Nullam non nisi est sit amet facilisis magna etiam tempor. Sed sed risus pretium quam vulputate
+    dignissim. Viverra orci sagittis eu volutpat odio facilisis mauris. Duis ut diam quam nulla porttitor massa id neque
+    aliquam. Integer quis auctor elit sed vulputate mi sit. In fermentum et sollicitudin ac orci phasellus. Ac felis
+    donec et odio pellentesque diam volutpat. Sed nisi lacus sed viverra tellus in hac habitasse. A scelerisque purus
+    semper eget duis at tellus at. Vehicula ipsum a arcu cursus vitae congue mauris.</p>
+
+  <p> Vel fringilla est ullamcorper eget nulla. Quam quisque id diam vel quam elementum pulvinar etiam non. In metus
+    vulputate eu scelerisque felis imperdiet proin fermentum. Quis commodo odio aenean sed adipiscing diam. Lobortis
+    scelerisque fermentum dui faucibus. Vel pharetra vel turpis nunc eget lorem dolor. Id ornare arcu odio ut sem nulla
+    pharetra diam sit. Nulla at volutpat diam ut venenatis tellus. Laoreet suspendisse interdum consectetur libero. Amet
+    dictum sit amet justo donec. Id velit ut tortor pretium viverra suspendisse. Fringilla phasellus faucibus
+    scelerisque eleifend donec pretium vulputate. Scelerisque in dictum non consectetur a erat. Aliquet enim tortor at
+    auctor urna nunc id cursus. In aliquam sem fringilla ut morbi tincidunt augue interdum velit. Ullamcorper velit sed
+    ullamcorper morbi tincidunt. Dui ut ornare lectus sit. Mattis ullamcorper velit sed ullamcorper.</p>
+  <p> Nec feugiat in fermentum posuere urna nec tincidunt. Posuere sollicitudin aliquam ultrices sagittis orci a
+    scelerisque purus semper. Aenean sed adipiscing diam donec adipiscing tristique risus. Varius duis at consectetur
+    lorem donec massa. Risus sed vulputate odio ut enim blandit. Vulputate ut pharetra sit amet aliquam id diam maecenas
+    ultricies. Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit. A cras semper auctor neque. Nulla
+    porttitor massa id neque. Placerat in egestas erat imperdiet sed euismod nisi. Ut aliquam purus sit amet luctus
+    venenatis lectus magna. Enim ut tellus elementum sagittis vitae et. Porta nibh venenatis cras sed felis eget velit.
+    Varius quam quisque id diam vel. Ac auctor augue mauris augue neque gravida in fermentum et. Sapien nec sagittis
+    aliquam malesuada. Nec sagittis aliquam malesuada bibendum arcu vitae elementum.</p>
+</div>
+{% endblock %}
