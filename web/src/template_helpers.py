@@ -15,10 +15,10 @@ def setup_context_processors(app):
     @app.context_processor
     def utilitity_processor():
         def url_for_redirect(url):
-            return url_for("redir.generic", url=urllib.parse.quote(url, safe=""))
+            return url_for("redir.generic", url=urllib.parse.quote_plus(url))
 
         def url_for_redirect_js(url):
-            return url_for("redir.generic_js", url=urllib.parse.quote(url, safe=""))
+            return url_for("redir.generic_js", url=urllib.parse.quote_plus(url))
 
         def get_fragment(string):
             return string.lower().replace(" ", "-")

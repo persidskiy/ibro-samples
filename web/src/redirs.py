@@ -59,13 +59,19 @@ def final():
     return render_template("final.html", page_title=text, text=text)
 
 
-@bp.route("/generic/<url>")
-def generic(url):
+@bp.route("/generic")
+def generic():
+    url = request.args.get('url', None)
+    if url is None:
+        return 404
     url = urllib.parse.unquote(url)
     return redirect(url, code=302)
 
 
-@bp.route("/generic-js/<url>")
-def generic_js(url):
+@bp.route("/generic-js")
+def generic_js():
+    url = request.args.get('url', None)
+    if url is None:
+        return 404
     url = urllib.parse.unquote(url)
     return render_template("client_redir.html", type="js", url=url)
