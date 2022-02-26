@@ -144,9 +144,55 @@
             </form>
 
             <h6>JS api</h6>
-            <button class="btn btn-primary btn-sm" onclick="window.open('/')">window.open('/')</button>
-            <button class="btn btn-secondary btn-sm" onclick="window.close()">window.close()</button>
-            <button class="btn btn-primary btn-sm" onclick="window.open()">window.open()</button>
+            <div class="mb-2">
+              <button class="btn btn-primary btn-sm" onclick="window.open('/')">window.open('/')</button>
+              <button class="btn btn-primary btn-sm" onclick="window.open()">window.open()</button>
+            </div>
+            <div class="mb-2">
+              <button class="btn btn-secondary btn-sm" onclick="window.close()">window.close()</button>
+              <button id="close-after-5-sec" class="btn btn-secondary btn-sm">window.close() after <span
+                  class="close-countdown"></span> seconds</button>
+            </div>
+            <div class="alert alert-warning" role="alert">
+              Note: <code>window.close()</code> works only in windows opened via
+            </div>
+
+            <script>
+              function autoClose(element, seconds) {
+                let timer = null;
+                let output = element.querySelector('.close-countdown');
+                if (!output) return;
+
+                function write(seconds) {
+                  output.innerText = seconds;
+                }
+
+                function reset() {
+                  write(seconds);
+                  clearInterval(timer);
+                  timer = null;
+                }
+
+                reset();
+
+                function start() {
+                  let remaining = seconds;
+                  reset();
+                  timer = setInterval(() => {
+                    remaining -= 1;
+                    write(remaining);
+                    if (remaining <= 0) {
+                      reset();
+                      window.close();
+                    }
+                  }, 1000)
+                }
+                element.addEventListener('click', start);
+              }
+              autoClose(document.querySelector('#close-after-5-sec'), 5);
+            </script>
+
+
           </div>
         </div>
       </div>
@@ -165,7 +211,8 @@
             <div class="row g-3 align-items-center">
               <div class="col-auto">Open</div>
               <div class="col-auto">
-                <input id="open-pages-n" class="form-control form-control-sm" placeholder="N" value="10" style="width:100px" />
+                <input id="open-pages-n" class="form-control form-control-sm" placeholder="N" value="10"
+                  style="width:100px" />
               </div>
               <div class="col-auto">
                 new tabs of
@@ -227,7 +274,8 @@
         {{ section_header(7) }}
         <ul>
           <li><a href="{{url_for('error_500')}}">500 Error</a></li>
-          <li><a href="{{url_for('basic_auth')}}">Basic Auth</a> (<a class="text-danger" href="{{url_for('basic_auth_logout')}}">Logout</a>)</li>
+          <li><a href="{{url_for('basic_auth')}}">Basic Auth</a> (<a class="text-danger"
+              href="{{url_for('basic_auth_logout')}}">Logout</a>)</li>
         </ul>
       </div>
     </div>
@@ -266,37 +314,37 @@
 
             let headers = new Headers();
             return fetch(url, { headers })
-                .then(response => {
-                    if (!response.ok) {
-                      throw new Error('Fail downloading object');
-                    }
-                    return response.blob();
-                  }).then(blob => {
-                    let objectUrl = window.URL.createObjectURL(blob);
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Fail downloading object');
+                }
+                return response.blob();
+              }).then(blob => {
+                let objectUrl = window.URL.createObjectURL(blob);
 
-                    anchor.href = objectUrl;
-                    anchor.download = 'some-file.jpg';
-                    anchor.click();
-                    document.body.removeChild(anchor)
+                anchor.href = objectUrl;
+                anchor.download = 'some-file.jpg';
+                anchor.click();
+                document.body.removeChild(anchor)
 
-                    window.URL.revokeObjectURL(objectUrl);
-                })
+                window.URL.revokeObjectURL(objectUrl);
+              })
           }
 
           function fetch_download_cookie() {
             download("{{url_for('file_download.download', filename='3.jpg')}}")
-            .then(function() {
-              let out = $('cookie-download-output');
-              out.innerText = 'Requires cookie.';
-              out.classList.remove('text-danger');
-              out.classList.add('text-muted');
-            })
-            .catch(err => {
-              let out = $('cookie-download-output');
-              out.innerText = err.message;
-              out.classList.add('text-danger');
-              out.classList.remove('text-muted');
-            })
+              .then(function () {
+                let out = $('cookie-download-output');
+                out.innerText = 'Requires cookie.';
+                out.classList.remove('text-danger');
+                out.classList.add('text-muted');
+              })
+              .catch(err => {
+                let out = $('cookie-download-output');
+                out.innerText = err.message;
+                out.classList.add('text-danger');
+                out.classList.remove('text-muted');
+              })
           }
         </script>
         <h6>Tag Download</h6>
@@ -305,22 +353,26 @@
             <a download="3.jpg" href="{{url_for('static', filename='images/3.jpg')}}">3.jpg</a>
           </li>
           <li>
-            <a download="3.jpg" href="{{url_for('file_download.download', filename='3.jpg')}}">3.jpg</a> <span class="text-muted">requires cookie.</span>
+            <a download="3.jpg" href="{{url_for('file_download.download', filename='3.jpg')}}">3.jpg</a> <span
+              class="text-muted">requires cookie.</span>
           </li>
           <li>
             <a download="PDFdoc.pdf" href="{{url_for('static', filename='files/PDFdoc.pdf')}}">PDFdoc.pdf</a>
           </li>
           <li>
-            <a download="PDFdoc.pdf" href="{{url_for('file_download.download', filename='PDFdoc.pdf')}}">PDFdoc.pdf</a> <span class="text-muted">requires cookie.</span>
+            <a download="PDFdoc.pdf" href="{{url_for('file_download.download', filename='PDFdoc.pdf')}}">PDFdoc.pdf</a>
+            <span class="text-muted">requires cookie.</span>
           </li>
         </ul>
         <h6>Object URL</h6>
         <ul>
           <li class="mb-1">
-            <button class="btn btn-primary btn-sm", onclick=download("{{url_for('static', filename='images/3.jpg')}}")>Download</button>
+            <button class="btn btn-primary btn-sm" , onclick=download("{{url_for('static', filename='images/3.jpg'
+              )}}")>Download</button>
           </li>
           <li class="mb-1">
-            <button class="btn btn-primary btn-sm", onclick="fetch_download_cookie()">Download</button> <span id="cookie-download-output" class="text-muted">Requires cookie.</span>
+            <button class="btn btn-primary btn-sm" , onclick="fetch_download_cookie()">Download</button> <span
+              id="cookie-download-output" class="text-muted">Requires cookie.</span>
           </li>
         </ul>
         <div class="mb-1 mt-4">
