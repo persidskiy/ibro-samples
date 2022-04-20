@@ -1,0 +1,28 @@
+{% extends 'common_head.html' %}
+{% block h_content %}
+<style>
+  iframe {
+    display: block;
+    background: #000;
+    border: none;
+    height: calc(100vh - 2em);
+    width: calc(100vw - 1em);
+}
+.frame-wrapper {
+    padding: 1.5em 0.5em 0.5em;
+    background-color: bisque;
+}
+.frame-label {
+  position: absolute;
+  left: 1em;
+  right: 1em;
+  top: 0;
+  font-family: monospace;
+  color: rgba(0, 0, 0, 0.6)
+}
+</style>
+<div class="frame-wrapper">
+  <div class="frame-label">This is iframe <a class="badge bg-dark app-version-badge text-decoration-none" href="{{url}}">exit</a></div>
+  <iframe src="{{url}}" frameborder="0"></iframe>
+</div>
+{% endblock %}

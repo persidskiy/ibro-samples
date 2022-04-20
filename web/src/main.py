@@ -83,3 +83,7 @@ def basic_auth():
 @login_required
 def basic_auth_logout():
     return (render_template('401.html'), 401)
+
+@app.route('/enframe')
+def enframe():
+    return render_template('enframe.html', url=request.args.get('url'))
