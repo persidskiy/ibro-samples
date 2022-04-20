@@ -17,7 +17,7 @@
             href="{{ url_for('pages.pages') }}">Pages</a>
         </div>
         <div class="d-flex">
-          <a class="badge bg-dark app-version-badge text-decoration-none" href="{{ url_for('enframe', url=request.url) }}" title="Open this page in iframe">Open in iframe</a>  
+          <a class="badge bg-dark app-version-badge text-decoration-none" href="{{ url_for('enframe', url=request.full_path) }}" title="Open this page in iframe">Open in iframe</a>  
           {% if not app_version or app_version == 'docker-dev' %}
           <span class="badge bg-info app-version-badge">rev: {{app_version}}</span>
           {% else %}
