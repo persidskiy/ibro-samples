@@ -284,27 +284,33 @@
     <div class="card mb-4">
       <div class="card-body">
         {{ section_header(8) }}
-        <h6>Supported in WKWebView</h6>
+        <h6>Supported inline</h6>
         <ul class="mb-2">
           <li>{{ static_file_url('PDFdoc.pdf') }}</li>
           <li>{{ static_file_url('Presentation.pptx') }}</li>
           <li>{{ static_file_url('Word.docx') }}</li>
           <li>{{ static_file_url('Excel.xlsx') }}</li>
-          <li>
-            <a href="{{url_for('file_download.download', filename='PDFdoc.pdf')}}">PDFdoc.pdf</a> <span
-              class="text-muted">Requires cookie.</span>
-          </li>
+          <li>{{ static_file_url('talking_people.mp3') }}</li>
 
+          <li>{{ static_file_url('PDFdoc.pdf', check_cookie=True) }}</li>
+          <li>{{ static_file_url('talking_people.mp3', check_cookie=True) }}</li>
         </ul>
-        <h6>Not supported</h6>
+        <h6>Supported inline + <code>Content-Disposition: attachment</code></h6>
         <ul class="mb-2">
-          <li>
-            <a href="{{url_for('static', filename='files/dummy10.dmg')}}">dummy10.dmg</a>
-          </li>
-          <li>
-            <a href="{{url_for('file_download.download', filename='dummy15.dmg')}}">dummy15.dmg</a> <span
-              class="text-muted">Requires cookie.</span>
-          </li>
+          <li>{{ static_file_url('talking_people.mp3', as_attachment=True) }}</li>
+          <li>{{ static_file_url('talking_people.mp3', as_attachment=True, check_cookie=True) }}</li>
+        </ul>
+        <h6>Not supported inline</h6>
+        <ul class="mb-2">
+          <li>{{ static_file_url('dummy10.dmg', as_attachment=True) }}</li>
+          <li>{{ static_file_url('dummy10.dmg', as_attachment=True, check_cookie=True) }}</li>
+        </ul>
+        <h6><code>download</code> html attribute</h6>
+        <ul class="mb-2">
+          <li>{{ static_file_url('3.jpg', download_attr='3.jpg') }}</li>
+          <li>{{ static_file_url('3.jpg', check_cookie=True, download_attr='3.jpg') }}</li>
+          <li>{{ static_file_url('PDFdoc.pdf', download_attr='PDFdoc.pdf') }}</li>
+          <li>{{ static_file_url('PDFdoc.pdf', check_cookie=True, download_attr='PDFdoc.pdf') }}</li>
         </ul>
 
         <script>
@@ -332,7 +338,7 @@
           }
 
           function fetch_download_cookie() {
-            download("{{url_for('file_download.download', filename='3.jpg')}}")
+            download("{{url_for('file_download.download', filename='3.jpg', check_cookie='1')}}")
               .then(function () {
                 let out = $('cookie-download-output');
                 out.innerText = 'Requires cookie.';
@@ -347,24 +353,7 @@
               })
           }
         </script>
-        <h6>Tag Download</h6>
-        <ul class="mb-2">
-          <li>
-            <a download="3.jpg" href="{{url_for('static', filename='images/3.jpg')}}">3.jpg</a>
-          </li>
-          <li>
-            <a download="3.jpg" href="{{url_for('file_download.download', filename='3.jpg')}}">3.jpg</a> <span
-              class="text-muted">requires cookie.</span>
-          </li>
-          <li>
-            <a download="PDFdoc.pdf" href="{{url_for('static', filename='files/PDFdoc.pdf')}}">PDFdoc.pdf</a>
-          </li>
-          <li>
-            <a download="PDFdoc.pdf" href="{{url_for('file_download.download', filename='PDFdoc.pdf')}}">PDFdoc.pdf</a>
-            <span class="text-muted">requires cookie.</span>
-          </li>
-        </ul>
-        <h6>Object URL</h6>
+        <h6><code>URL.createObjectURL</code></h6>
         <ul>
           <li class="mb-1">
             <button class="btn btn-primary btn-sm" , onclick=download("{{url_for('static', filename='images/3.jpg'
@@ -372,17 +361,17 @@
           </li>
           <li class="mb-1">
             <button class="btn btn-primary btn-sm" , onclick="fetch_download_cookie()">Download</button> <span
-              id="cookie-download-output" class="text-muted">Requires cookie.</span>
+              id="cookie-download-output" class="text-muted">🍪 required</span>
           </li>
         </ul>
         <div class="mb-1 mt-4">
           {% if download_cookie_is_set %}
           <form action="{{url_for('file_download.unset_cookie')}}" method="post">
-            <button class="btn btn-sm btn-danger" type="submit">Unset Cookie</button>
+            <button class="btn btn-sm btn-danger" type="submit">🍪 Unset Cookie</button>
           </form>
           {% else %}
           <form action="{{url_for('file_download.set_cookie')}}" method="post">
-            <button class="btn btn-sm btn-primary" type="submit">Set Cookie</button>
+            <button class="btn btn-sm btn-primary" type="submit">🍪 Set Cookie</button>
           </form>
           {% endif %}
         </div>
