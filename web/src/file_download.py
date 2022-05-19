@@ -33,11 +33,13 @@ def unset_cookie():
 
 @bp.route("/")
 def download():
-    filename = request.args.get("filename", None)
+    filename = request.args.get('filename', None)
+    as_attachment = request.args.get('as_attachment', None) is not None
+    check_cookie = request.args.get('check_cookie', None) is not None
     if not filename:
         abort(400)
 
-    if is_cookie_set():
-        return send_from_directory('static/files', filename)
-    else:
+    if check_cookie and not is_cookie_set():
         abort(401)
+    
+    return send_from_directory('static/files', filename, as_attachment=as_attachment)

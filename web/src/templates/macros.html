@@ -6,11 +6,19 @@
 <code> ]</code>
 {% endmacro %}
 
-{% macro static_file_url(filename) -%}
-{% set url = url_for('static', filename='files/' + filename) %}
+{% macro static_file_url(filename, as_attachment=None, check_cookie=None, download_attr=None) -%}
+{% set url = url_for(
+    'file_download.download', 
+    filename=filename, 
+    as_attachment=as_attachment, 
+    check_cookie=check_cookie) 
+%}
 
-<a href="{{ url }}">{{filename}}</a>
+<a {%if download_attr %}download="{{download_attr}}" {% endif %} href="{{ url }}">{{filename}}</a>
 
 {{redir_links(url)}}
+{% if check_cookie %}
+<span class="text-muted">🍪 required</span>
+{% endif %}
 
 {%- endmacro %}
