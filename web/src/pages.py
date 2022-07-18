@@ -40,3 +40,9 @@ def omni_bug():
         "pages/omni_bug.html", page_title="Omni Bug", menu="pages",
     )
 
+@bp.route("/visibility-api")
+def visibility_api():
+    return render_template(
+        "pages/visibility_api.html", page_title="Visilibity API", menu="pages",
+    )
+

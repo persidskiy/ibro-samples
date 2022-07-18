@@ -1,0 +1,15 @@
+{% extends 'common.html' %}
+{% block content %}
+<h2>Visibility API</h2>
+
+<script>
+  document.addEventListener('visibilitychange', () => {
+    let now = new Date();
+    let time = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+    document.querySelector('.log').innerHTML += `${time}: visibilitychange - ${document.hidden ? 'hidden' : 'visible'}\n`
+  })
+</script>
+
+<pre><code class="log">
+</code></pre>
+{% endblock %}
