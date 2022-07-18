@@ -18,6 +18,8 @@ class BasicTests(unittest.TestCase):
             "/pages/youtube",
             "/pages/videos",
             "/pages/dark-mode",
+            "/pages/omni-bug",
+            "/pages/visibility-api",
             "/urls",
             "/slow-client-loading",
             "/replace-state",
