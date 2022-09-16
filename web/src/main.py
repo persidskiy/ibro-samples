@@ -87,3 +87,10 @@ def basic_auth_logout():
 @app.route('/enframe')
 def enframe():
     return render_template('enframe.html', url=request.args.get('url'))
+
+
+@app.route('/popup-blocking')
+def popup_blocking():
+    url = request.args.get('url', 'https://ibro.best')
+    n = request.args.get('n', 5)
+    return render_template('popup_blocking.html', url=url, n=n)
