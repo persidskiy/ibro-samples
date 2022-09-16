@@ -1,0 +1,17 @@
+{% extends 'common.html' %}
+{% from 'macros.html' import static_file_url with context %}
+
+
+{% block content %}
+<script>
+    for (let i = 0; i < {{ n }}; i++) {
+        window.open('{{ url }}');
+    }
+</script>
+<div class="row">
+    <div class="col-sm">
+        <p>This page calls <code>window.open('{{url}}')</code> {{n}} times.</p>
+    </div>
+</div>
+
+{% endblock %}

@@ -223,14 +223,28 @@
               <div class="col-auto">
                 <button class="btn btn-primary btn-sm" onclick="openTabs()">Open</button>
               </div>
+              <a id="external-open-many-tabs">Open after navigation</a>
               <script>
-                function openTabs() {
-                  var n = document.getElementById("open-pages-n").value;
-                  var url = document.getElementById("open-pages-url").value;
-                  for (var i = 0; i < n; i++) {
-                    window.open(url);
+                (function () {
+                  var nField = document.getElementById("open-pages-n");
+                  var urlField = document.getElementById("open-pages-url");
+
+                  function openTabs() {
+                    for (var i = 0; i < nField.value; i++) {
+                      window.open(urlField.value);
+                    }
                   }
-                }
+
+                  function updateLink() {
+                    const link = document.getElementById('external-open-many-tabs');
+                    const url = encodeURIComponent(urlField.value);
+                    const n = encodeURIComponent(nField.value);
+                    link.href = `{{ url_for('popup_blocking') }}?url=${url}&n=${n}`;
+                  }
+                  nField.addEventListener('input', updateLink);
+                  urlField.addEventListener('input', updateLink);
+                  updateLink();
+                })();
               </script>
             </div>
           </div>
